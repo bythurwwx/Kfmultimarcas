@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KF Multimarcas | Premium Streetwear</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        FRETE GRÁTIS PARA CASCAVEL E REGIÃO EM COMPRAS ACIMA DE R$ 200
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-container">
+                <h1>KF <span>MULTIMARCAS</span></h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="https://www.instagram.com/kfmultimarcas_oficial" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-premium" id="home">
+        <div class="hero-overlay">
+            <div class="hero-text">
+                <span class="subtitle">NOVA COLEÇÃO 2026</span>
+                <h2>ELEVE SEU ESTILO</h2>
+                <p>O melhor do streetwear e as exclusividades da <b>Linha Jisk</b> para quem não aceita o comum.</p>
+                <div class="hero-btns">
+                    <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+                    <div class="coupon-box">CUPOM: <span>KF10</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-truck"></i>
+            <h3>Entrega Rápida</h3>
+            <p>Receba no conforto da sua casa com agilidade.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-check-circle"></i>
+            <h3>Qualidade Premium</h3>
+            <p>Peças selecionadas das melhores marcas.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Compra Segura</h3>
+            <p>Atendimento direto e personalizado via WhatsApp.</p>
+        </div>
+    </section>
+
+    <section class="catalogo-container" id="catalogo">
+        <h2 class="section-title">Explore nosso <span>Catálogo</span></h2>
+        
+        <div class="filter-wrapper">
+            <button class="filter-btn active" onclick="filterSelection('all')">Todos os Itens</button>
+            <button class="filter-btn" onclick="filterSelection('jisk')">Linha Jisk</button>
+            <button class="filter-btn" onclick="filterSelection('camisetas')">Camisetas</button>
+            <button class="filter-btn" onclick="filterSelection('calcas')">Calças e Bermudas</button>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card filter-item jisk">
+                <div class="badge">Lançamento</div>
+                <div class="product-img" style="background-image: url('jisk-1.jpg');"></div>
+                <div class="product-info">
+                    <span class="category">Linha Jisk</span>
+                    <h3>Camiseta Jisk Oversized</h3>
+                    <div class="price">R$ 119,90</div>
+                    <a href="https://wa.me/5585999999999" class="btn-buy">Comprar Agora</a>
+                </div>
+            </div>
+
+            <div class="product-card filter-item camisetas">
+                <div class="product-img" style="background-image: url('camiseta-premium.jpg');"></div>
+                <div class="product-info">
+                    <span class="category">Streetwear</span>
+                    <h3>Camiseta Urban Style</h3>
+                    <div class="price">R$ 89,90</div>
+                    <a href="https://wa.me/5585999999999" class="btn-buy">Comprar Agora</a>
+                </div>
+            </div>
+
+            <div class="product-card filter-item calcas">
+                <div class="product-img" style="background-image: url('cargo-luxo.jpg');"></div>
+                <div class="product-info">
+                    <span class="category">Casual</span>
+                    <h3>Calça Cargo Elite</h3>
+                    <div class="price">R$ 169,90</div>
+                    <a href="https://wa.me/5585999999999" class="btn-buy">Comprar Agora</a>
+                </div>
+            </div>
+            
+            </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>KF <span>MULTIMARCAS</span></h2>
+                <p>A loja que define o seu estilo em Ceará.</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 KF Multimarcas - Cascavel/CE. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        function filterSelection(c) {
+            var x = document.getElementsByClassName("filter-item");
+            if (c == "all") c = "";
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                if (x[i].className.indexOf(c) > -1) {
+                    x[i].style.display = "block";
+                }
+            }
+            var btns = document.getElementsByClassName("filter-btn");
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].classList.remove("active");
+            }
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
