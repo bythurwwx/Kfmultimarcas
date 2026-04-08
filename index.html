@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KF Multimarcas - O melhor da moda masculina. Tendências, qualidade e exclusividade.">
+    <title>KF Multimarcas | Moda Masculina</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <nav id="navbar" class="navbar">
+        <div class="nav-left">
+            <ul>
+                <li><i class="fa-solid fa-bars" id="menu_icon"></i></li>
+                <li><a href="#" class="nav-hid">Menu</a></li>
+                <li><i class="fa-solid fa-magnifying-glass" id="search_icon"></i></li>
+            </ul>
+        </div>
+
+        <a href="#" class="brand">KF MULTIMARCAS</a>
+
+        <div class="nav-right">
+            <ul>
+                <li><a href="#"><i class="fa-regular fa-heart"></i> <span class="nav-hid">Favoritos</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-user"></i> <span class="nav-hid">Minha Conta</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="videobg" id="video1">
+        <video src="assets/hero/banner-principal.mp4" autoplay loop muted playsinline class="video"></video>
+        <div class="overlay-content">
+            <h2>Nova Coleção Outono/Inverno</h2>
+            <button>Explorar Coleção</button>
+        </div>
+    </section>
+      
+    <section class="videobg" id="video2">
+        <video src="assets/hero/estilo-urbano.mp4" autoplay loop muted playsinline class="video"></video>
+        <div class="overlay-content">
+            <h2>Streetwear & Casual</h2>
+            <button>Ver Produtos</button>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Nossos Diferenciais</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <div class="card">
+                    <img class="card-image" src="assets/services/atendimento.jpg" alt="Atendimento KF">
+                    <div class="card-content">
+                        <h3>Atendimento Personalizado</h3>
+                        <p>Dúvidas sobre tamanhos ou tecidos? Fale com nossos consultores via WhatsApp.</p>
+                        <button class="card-btn">Chamar no Whats</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="card">
+                    <img class="card-image" src="assets/services/entrega.jpg" alt="Entrega Rápida">
+                    <div class="card-content">
+                        <h3>Entrega Segura</h3>
+                        <p>Enviamos para todo o Brasil com embalagens premium e seguro de carga.</p>
+                        <button class="card-btn">Ver Prazos</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="card">
+                    <img class="card-image" src="assets/services/presente.jpg" alt="Kits Presente">
+                    <div class="card-content">
+                        <h3>Kits de Presente</h3>
+                        <p>Surpreenda alguém especial com nossas seleções exclusivas e embalagens de luxo.</p>
+                        <button class="card-btn">Para Ele</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-main">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>AJUDA</h4>
+                <a href="#">Trocas e Devoluções</a>
+                <a href="#">Rastrear Pedido</a>
+                <a href="#">Guia de Medidas</a>
+                <a href="#">Fale Conosco</a>
+            </div>
+            <div class="footer-column">
+                <h4>INSTITUCIONAL</h4>
+                <a href="#">Sobre a KF Multimarcas</a>
+                <a href="#">Nossas Lojas</a>
+                <a href="#">Trabalhe Conosco</a>
+                <a href="#">Sustentabilidade</a>
+            </div>
+            <div class="footer-column">
+                <h4>CONECTE-SE</h4>
+                <p>Assine nossa newsletter para ofertas exclusivas.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <hr>
+            <p>&copy; 2024 KF Multimarcas - Todos os direitos reservados.</p>
+            <div class="footer-legal">
+                <a href="#">Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica da Navbar (Esconder ao rolar para baixo)
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-100px";
+            } else {
+                navbar.style.top = "0";
+                scrollTop === 0 ? navbar.classList.remove("scrolled") : navbar.classList.add("scrolled");
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Accordion para Mobile (Opcional, conforme seu CSS)
+        var acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                panel.style.maxHeight ? panel.style.maxHeight = null : panel.style.maxHeight = panel.scrollHeight + "px";
+            });
+        }
+    </script>
+</body>
+</html>
