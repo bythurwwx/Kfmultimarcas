@@ -132,3 +132,43 @@ footer {
     font-size: 0.9rem;
     color: #666;
 }
+/* Seção de Filtros */
+.filter-section {
+    text-align: center;
+    padding: 30px 0;
+    background: #111;
+}
+
+.filter-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid #d4af37;
+    padding: 10px 25px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #d4af37;
+    color: black;
+}
+
+/* Animação ao filtrar */
+.filter-item {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste no card para interação visual */
+.product-card:active {
+    transform: scale(0.98);
+}
+
