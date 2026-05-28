@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bússola Literária 🧭</title>
+    <title>Clarinha Abelha 🐝</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding: 20px; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; }
-        textarea { width: 100%; height: 100px; margin: 15px 0; padding: 10px; border: 1px solid #ddd; border-radius: 8px; resize: none; }
-        button { background: #34495e; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; }
-        button:hover { background: #2c3e50; }
-        #resultado { margin-top: 20px; text-align: left; display: none; padding: 15px; border-left: 5px solid #34495e; background: #f9f9f9; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fffdf0; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2); width: 100%; max-width: 500px; text-align: center; border: 2px solid #ffc107; }
+        .bee-icon { font-size: 60px; margin-bottom: 10px; }
+        h1 { color: #856404; margin-top: 0; }
+        textarea { width: 100%; height: 100px; margin: 15px 0; padding: 10px; border: 2px solid #ffeeba; border-radius: 12px; resize: none; font-size: 14px; }
+        button { background: #ffc107; color: #856404; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; transition: background 0.3s; }
+        button:hover { background: #ffca2c; }
+        #resultado { margin-top: 20px; text-align: left; display: none; padding: 15px; border-left: 5px solid #ffc107; background: #fffdf0; border-radius: 0 10px 10px 0; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>Bússola Literária 🧭</h1>
+    <div class="bee-icon">🐝O.O</div>
+    <h1>Clarinha Abelha</h1>
     <p>Como você está se sentindo hoje?</p>
     <textarea id="userInput" placeholder="Ex: Estou me sentindo ansioso e sobrecarregado no trabalho..."></textarea>
     <button id="btnBuscar">Encontrar Recomendação</button>
 
     <div id="resultado">
-        <h3 id="tituloLivro"></h3>
+        <h3 id="tituloLivro" style="color: #856404;"></h3>
         <p><strong id="autorLivro"></strong></p>
         <p id="motivoLivro"></p>
     </div>
@@ -104,7 +107,7 @@
             document.getElementById('motivoLivro').innerText = melhorLivro.motivo;
             document.getElementById('resultado').style.display = 'block';
         } else {
-            alert("Não encontramos uma recomendação exata, tente descrever mais como você se sente!");
+            alert("Clarinha Abelha ainda não encontrou uma recomendação exata, tente descrever mais como você se sente! 🐝");
         }
     });
 </script>
