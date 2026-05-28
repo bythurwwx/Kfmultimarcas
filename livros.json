@@ -27,7 +27,7 @@
     "titulo": "Grit: O Poder da Paixão e da Perseverança",
     "autor": "Angela Duckworth",
     "tags": ["estudar", "estudos", "concurso", "prova", "desistir", "disciplina", "desfocado", "meta", "objetivo", "treino", "esporte", "atleta", "focar", "resiliência"],
-    "motivo": "Mostra como a consistência e o esforço de longo prazo superam o talento natural."
+    "motivo": "Mostra como a consistência e o effort de longo prazo superam o talento natural."
   },
   {
     "titulo": "O Lado Difícil das Situações Difíceis",
@@ -46,10 +46,7 @@
     "autor": "Nassim Nicholas Taleb",
     "tags": ["caos", "mudança", "imprevisto", "azar", "problema", "incerteza", "adaptar", "forte", "evoluir", "revezes", "bater de frente"],
     "motivo": "Ensina como se beneficiar do caos, dos erros e das incertezas da vida."
-
-  }
-]
-,
+  },
   {
     "titulo": "Como Fazer Amigos e Influenciar Pessoas",
     "autor": "Dale Carnegie",
@@ -60,15 +57,14 @@
     "titulo": "Mindset: A Nova Psicologia do Sucesso",
     "autor": "Carol S. Dweck",
     "tags": ["inteligente", "talento", "incapaz", "inteligência", "aprender", "limitações", "mente", "travado", "travada", "erro", "perfeccionismo", "limite", "evoluir"],
-    "motivo": "Perfeito para mudar a forma como você lida com os seus erros e limitações, mostrando que tudo pode ser aprendido com esforço."
+    "motivo": "Perfeito para mudar a forma como você lida com os seus erros e limitações, mostrando que tudo pode ser aprendido com effort."
   },
   {
     "titulo": "O Milagre da Manhã",
     "autor": "Hal Elrod",
     "tags": ["acordar", "manha", "manhã", "cedo", "desanimado", "energia", "produtivo", "sono", "disposição", "dia", "começar", "vencer", "despertar"],
     "motivo": "Ideal para transformar a sua rotina matinal, trazendo mais energia, foco e disposição logo nas primeiras horas do seu dia."
-  }
-,
+  },
   {
     "titulo": "A Gente Mira no Amor e Acerta na Solidão",
     "autor": "Ana Suy",
@@ -98,8 +94,7 @@
     "autor": "Amir Levine e Rachel Heller",
     "tags": ["ciúmes", "ciume", "apego", "segurança", "inseguro", "insegura", "medo de perder", "dependência", "dependente", "grudado", "grudada", "sufocado", "sufocada", "cobrar"],
     "motivo": "Perfeito para entender por que você sente tanta insegurança, ciúmes ou medo de ser abandonado no namoro, ajudando a construir relações mais leves e seguras."
-  }
-,
+  },
   {
     "titulo": "Harry Potter e a Pedra Filosofal",
     "autor": "J.K. Rowling",
@@ -122,7 +117,7 @@
     "titulo": "Percy Jackson e os Olimpianos",
     "autor": "Rick Riordan",
     "tags": ["deuses", "mitologia", "escola", "tdah", "monstros", "aventura", "engraçado", "poseidon", "semideus", "meio-sangue", "mico", "azarado"],
-    "motivo": "Uma aventura ultra divertida com um protagonista que só passa mico, perfeita para quem ama mitologia grega e quer uma leitura rápida e viciante."
+    "motivo": "Uma aventura ultra divertida com um protagonist que só passa mico, perfeita para quem ama mitologia grega e quer uma leitura rápida e viciante."
   },
   {
     "titulo": "Jogos Vorazes",
@@ -159,8 +154,7 @@
     "autor": "Rebecca Yarros",
     "tags": ["dragões", "dragoes", "militar", "romantasia", "treinamento", "perigo", "forte", "violenta", "xaden", "fogo", "obcecada", "viciante"],
     "motivo": "Se você quer uma leitura viciante com dragões gigantes, treinamento militar brutal e um romance perigoso de tirar o fôlego."
-  }
-,
+  },
   {
     "titulo": "Vermelho, Branco e Sangue Azul",
     "autor": "Casey McQuiston",
@@ -176,7 +170,7 @@
   {
     "titulo": "Leitura de Verão",
     "autor": "Emily Henry",
-    "tags": ["iludidos", "iludida", "iludido", "fic", "expectativa", "clichê", "crush", "vizinhos", "opostos", "romance de livro", "ilusão"],
+    "tags": ["iludidos", "iludida", "iludido", "fic", "expectativa", "clichê", "crush", "vizinhos", "opostos", "romance de livro", "ilusão", "enemies to lovers", "comédia romântica", "escritores", "aposta", "vibe de praia"],
     "motivo": "O livro perfeito para os iludidos de plantão que amam criar fics na cabeça sobre o crush. Dois escritores totalmente opostos viram vizinhos de praia e fazem uma aposta que vai mexer com as expectativas de ambos."
   },
   {
@@ -188,7 +182,7 @@
   {
     "titulo": "As Vantagens de Ser Invisível",
     "autor": "Stephen Chbosky",
-    "tags": ["tristes", "triste", "bad", "choro", "solidão", "solitário", "solitária", "deprimido", "deprimida", "trauma", "adolescência", "isolado", "compreendido"],
+    "tags": ["tristes", "triste", "bad", "choro", "solidão", "solitário", "solitária", "deprimido", "deprimida", "trauma", "adolescência", "isolado", "compreendido", "pov", "cartas", "amizades reais", "nostálgico", "acolhedor"],
     "motivo": "Se você está triste ou se sentindo isolado do mundo, este livro funciona como um abraço. Ele aborda a solidão e os traumas com uma sensibilidade absurda, fazendo a gente se sentir menos sozinho."
   },
   {
@@ -196,12 +190,11 @@
     "autor": "Franz Kafka",
     "tags": ["tristes", "triste", "bad", "rejeição", "família", "pai", "trauma", "magoado", "magoada", "peso", "culpa", "desabafo", "angústia"],
     "motivo": "Para quando a tristeza vem de problemas familiares ou de cobranças do passado. Um desabafo real e doloroso sobre as marcas que a rejeição e o medo podem deixar na nossa mente."
-  }
-,
+  },
   {
     "titulo": "Melhor do que nos Filmes",
     "autor": "Lynn Painter",
-    "tags": ["estou apaixonado", "apaixonada", "estou apaixonada", "emocionado", "emocionada", "cadelando", "cadelinha", "rendido", "rendida", "crush", "de quatro", "lovezinho", "fofo", "clichê", "cliche", "enemies to lovers", "comédia romântica"],
+    "tags": ["estou apaixonado", "apaixonada", "estou apaixonada", "emocionado", "emocionada", "cadelando", "cadelinha", "rendido", "rendida", "crush", "de quatro", "lovezinho", "fofo", "clichê", "cliche", "enemies to lovers", "comédia romântica", "vizinhos", "fake dating", "namoro fake", "meta de vida", "clichê perfeito", "romance fofo", "vibe boa"],
     "motivo": "Para quem está super apaixonado e agindo como um completo emocionado! Uma comédia romântica levinha sobre duas pessoas que se provocam, mas acabam totalmente rendidas uma pela outra."
   },
   {
@@ -209,12 +202,11 @@
     "autor": "Ali Hazelwood",
     "tags": ["estou apaixonado", "obcecado", "obcecada", "casal do ano", "mimos", "ficando", "namorados", "shippo", "shippar", "meu casal", "caidinho", "caidinha", "love", "romance fofo"],
     "motivo": "A leitura ideal para quem está caidinho por alguém e quer ler sobre um casal com uma química absurda que faz a gente querer shippar até a última página."
-  }
-,
+  },
   {
     "titulo": "Manual de Assassinato para Boas Garotas",
     "autor": "Holly Jackson",
-    "tags": ["mistério", "misterio", "investigação", "crime", "investigar", "podcast", "maria fifi", "fofoca", "desvendar", "plot twist", "viciante", "escola"],
+    "tags": ["mistério", "misterio", "investigação", "crime", "investigar", "podcast", "maria fifi", "fofoca", "desvendar", "plot twist", "viciante", "escola", "exposed", "crime de escola", "suspense jovem", "fofoca da cidade"],
     "motivo": "O suspense perfeito para quem tem o espírito de 'maria fifi' e ama bancar o detetive. Uma estudante decide reabrir um caso de assassinato da sua cidade para o seu projeto de escola e descobre segredos perigosos."
   },
   {
@@ -242,7 +234,7 @@
     "motivo": "Uma comédia romântica leve na vibe 'fake dating' envolvendo o mundo do futebol. Ideal para descontrair e sair totalmente de qualquer ressaca literária."
   },
   {
-    "titulo": "Os Dois Morrem no Final",
+    "titulo": "Os Dos Morrem no Final",
     "autor": "Adam Silvera",
     "tags": ["choro", "triste", "despedida", "último dia", "aplicativo", "amizade", "lgbt", "viver a vida", "bad", "aproveitar", "morte"],
     "motivo": "O título já entrega o spoiler, mas a jornada é de quebrar o coração. Dois garotos recebem um aviso de que vão morrer nas próximas 24 horas e decidem passar o último dia juntos."
@@ -262,13 +254,13 @@
   {
     "titulo": "Fogo & Sangue",
     "autor": "George R.R. Martin",
-    "tags": ["dragões", "dragoes", "guerra", "trono", "targaryen", "fantasia medieval", "família", "traição", "geek", "nerd", "house of the dragon"],
+    "tags": ["dragões", "dragoes", "guerra", "trono", "targaryen", "fantasia medieval", "família", "traição", "geek", "nerd", "house of the dragon", "fofoca de família", "disputa", "trono de ferro"],
     "motivo": "Para os nerds que amam conspirações políticas medievais e disputas de poder. Narra a história de ascensão e queda da dinastia dos reis que montavam dragões."
   },
   {
     "titulo": "A Vida Invisível de Addie LaRue",
     "autor": "V.E. Schwab",
-    "tags": ["pacto", "imortal", "esquecida", "solidão", "arte", "séculos", "romance fantasioso", "lembrar", "sombra", "profundo"],
+    "tags": ["pacto", "imortal", "esquecida", "solidão", "arte", "séculos", "romance fantasioso", "lembrar", "sombra", "profundo", "poético", "história de amor", "lindo", "vibe cult"],
     "motivo": "Uma jovem faz um pacto para viver para sempre, mas com a maldição de ser esquecida por todos que a conhecem, até que alguém finalmente lembra seu nome 300 anos depois."
   },
   {
@@ -330,26 +322,18 @@
     "autor": "Charles Duhigg",
     "tags": ["mudar", "vício", "vicios", "vícios", "rotina", "gatilho", "recompensa", "psicologia", "ciência", "parar de fumar", "emagrecer"],
     "motivo": "Explica o funcionamento científico de como os hábitos se instalam no nosso cérebro e ensina como quebrar ciclos ruins e criar rotinas de sucesso."
-  }
-]
-,
+  },
   {
     "titulo": "A Paciente Silenciosa",
     "autor": "Alex Michaelides",
     "tags": ["suspense", "mistério", "misterio", "assassinato", "psicólogo", "psiquiatra", "plot twist", "choque", "surtado", "surtada", "traumatizado", "investigação"],
-    "motivo": "O suspense psicológico perfeito para quem quer ficar completamente surtado. Uma pintora famosa dá cinco tiros no marido e nunca mais diz uma única palavra. Um terapeuta tenta desvendar o mistério por trás do silêncio dela."
+    "motivo": "O suspense psicológico perfeito para quem quer ficar completamente surtado. Uma pintora famosa dá cinco tiros no marido e nunca mais diz uma única palavra. Um terapeuta tenta desvendar o misterio por trás do silêncio dela."
   },
   {
     "titulo": "O Verão que Mudou Minha Vida",
     "autor": "Jenny Han",
     "tags": ["triângulo amoroso", "triangulo amoroso", "irmãos", "praia", "verão", "verao", "adolescência", "fofo", "clichê", "cliche", "série", "romance"],
     "motivo": "Para quem ama um bom drama de triângulo amoroso em clima de férias de praia. A história acompanha uma garota dividida entre dois irmãos que ela conhece desde a infância."
-  },
-  {
-    "titulo": "Melhor que nos Filmes",
-    "autor": "Lynn Painter",
-    "tags": ["clichê perfeito", "romance fofo", "vizinhos", "fake dating", "namoro fake", "enemies to lovers", "emocionou", "comédia romântica", "vibe boa", "meta de vida"],
-    "motivo": "Se você quer uma leitura leve que te faça sorrir igual bobo. Uma comédia romântica cheia de referências a filmes que entrega o namoro fake perfeito com o vizinho marrento."
   },
   {
     "titulo": "As Cinco Pessoas que Você Encontra no Céu",
@@ -439,7 +423,7 @@
     "titulo": "Gatilhos Mentais",
     "autor": "Gustavo Ferreira",
     "tags": ["vendas", "marketing", "persuasão", "negócios", "comercio", "clientes", "influência", "convencer", "loja", "faturamento"],
-    "motivo": "Essencial se você trabalha com comércio ou vendas na internet. O livro ensina a usar as palavras certas para convencer o cliente a comprar de você."
+    "motivo": "Essencial si você trabalha com comércio ou vendas na internet. O livro ensina a usar as palavras certas para convencer o cliente a comprar de você."
   },
   {
     "titulo": "A Linha de Beleza",
@@ -452,8 +436,7 @@
     "autor": "Steven Pressfield",
     "tags": ["procrastinação", "bloqueio criativo", "preguiça", "escrever", "ideias", "disciplina", "criar", "projeto", "foco bruto"],
     "motivo": "O livro definitivo para artistas, escritores ou qualquer pessoa que tenha um projeto travado por causa da procrastinação e do medo de falhar."
-  }
-,
+  },
   {
     "titulo": "Verity",
     "autor": "Colleen Hoover",
@@ -471,12 +454,6 @@
     "autor": "Edward Powys Mathers",
     "tags": ["desafio", "enigma", "quebra-cabeça", "investigar", "detetive", "difícil", "páginas soltas", "quebrar a cabeça", "misterio", "impossível"],
     "motivo": "O livro-enigma que virou trend no TikTok porque quase ninguém consegue resolver. As páginas vêm totalmente fora de ordem e você precisa bancar o detetive para descobrir quem são os assassinos."
-  },
-  {
-    "titulo": "Leitura de Verão",
-    "autor": "Emily Henry",
-    "tags": ["enemies to lovers", "comédia romântica", "vizinhos", "escritores", "aposta", "vibe de praia", "crush", "opostos", "romance leve"],
-    "motivo": "A comédia romântica perfeita para quem ama a dinâmica de opostos e vizinhos que se provocam. Uma aposta genial entre dois escritores que vai te fazer suspirar."
   },
   {
     "titulo": "O Príncipe Cruel",
@@ -499,7 +476,7 @@
   {
     "titulo": "As Crônicas de Nárnia",
     "autor": "C.S. Lewis",
-    "tags": ["nostalgia", "infância", "guarda-roupa", "leão", "magia", "clássico", "vibe fantástica", "fuga da realidade", "aventura", "antigo"],
+    "tags": ["nostalgia", "infância", "guarda-roupa", "leão", "magia", "clássico", "vibe fantástica", "fuga da realidade", "adventure", "antigo"],
     "motivo": "Bateu aquela nostalgia da infância? Esse clássico supremo te joga para dentro de um guarda-roupa mágico com aventuras puras, perfeito para fugir da realidade cansativa."
   },
   {
@@ -507,12 +484,6 @@
     "autor": "Marissa Meyer",
     "tags": ["rainha de copas", "alice no país das maravilhas", "final triste", "vilã", "origem", "choro", "fantasia", "romance trágico", "deprimida"],
     "motivo": "Conta a história de origem da Rainha de Copas antes de virar vilã. O romance é lindo, mas o final é um tombo que vai deixar você deprimida e sem chão."
-  },
-  {
-    "titulo": "A Vida Invisível de Addie LaRue",
-    "autor": "V.E. Schwab",
-    "tags": ["poético", "pacto", "imortal", "esquecida", "séculos", "história de amor", "profundo", "lindo", "arte", "solidão", "vibe cult"],
-    "motivo": "Um livro com uma escrita tão linda e poética que já canonizou como um dos favoritos do BookTok. Ideal para quem quer ler algo profundo sobre o tempo e a solidão."
   },
   {
     "titulo": "A Boa Filha",
@@ -539,12 +510,6 @@
     "motivo": "O livro de poesias que definiu a sofrença jovem no TikTok. Textos intensos sobre términos, falta de reciprocidade e aquela dor de cotovelo na madrugada."
   },
   {
-    "titulo": "As Vantagens de Ser Invisível",
-    "autor": "Stephen Chbosky",
-    "tags": ["pov", "cartas", "adolescência", "traumas", "amizades reais", "música", "nostálgico", "acolhedor", "triste", "compreensão"],
-    "motivo": "Um clássico em formato de cartas (parece o POV de um amigo desabafando). Trata de traumas e isolamento de um jeito tão acolhedor que te faz sentir parte do grupo."
-  },
-  {
     "titulo": "Coraline",
     "autor": "Neil Gaiman",
     "tags": ["terror infantil", "outra mãe", "botões nos olhos", "bizarro", "suspense curto", "gótico", "medo", "leitura rápida", "animação"],
@@ -557,25 +522,11 @@
     "motivo": "O livro que deu origem à série da Netflix. Tem fofoca da alta sociedade, namoro falso por conveniência e um duque muito querido que mexe com o coração de qualquer um."
   },
   {
-    "titulo": "Manual de Assassinato para Boas Garotas",
-    "autor": "Holly Jackson",
-    "tags": ["maria fifi", "exposed", "investigação", "crime de escola", "viciante", "plot twist", "suspense jovem", "fofoca da cidade", "desvendar"],
-    "motivo": "Se você tem espírito de maria fifi e ama um exposed, vai devorar esse suspense. Uma garota decide provar que o culpado de um crime famoso da sua escola continua solto."
-  },
-  {
     "titulo": "Mil Beijos de Garoto",
     "autor": "Tillie Cole",
     "tags": ["choro descontrolado", "desidratar de chorar", "romance triste", "doença", "luto", "amor de infância", "gatilho", "bad suprema", "tristíssimo"],
     "motivo": "Aviso: Esse livro vai fazer você desidratar de chorar nas trends do TikTok. É um romance lindo, mas de uma bad suprema sobre o tempo que nos resta com quem amamos."
   },
-  {
-    "titulo": "Fogo & Sangue",
-    "autor": "George R. R. Martin",
-    "tags": ["dragões", "targaryen", "guerra", "fofoca de família", "traição", "trono de ferro", "geek", "nerd", "house of the dragon", "disputa"],
-    "motivo": "Para quem curte uma fofoca de família misturada com guerra e dragões gigantes. É o livro que inspirou a série e expande o universo nerd de forma épica."
-  }
-
-,
   {
     "titulo": "Amor por Engano",
     "autor": "Lynn Painter",
@@ -598,7 +549,7 @@
     "titulo": "Bilionário por Contrato",
     "autor": "Ana Huang",
     "tags": ["bilionário", "casamento falso", "marrento", "obcecado", "obcecada", "quente", "luxo", "homem rico", "possessivo", "controlador", "meta de vida"],
-    "motivo": "Para ficar completamente obcecada por um homem rico, poderoso e marrento que odeia o mundo inteiro, menos a protagonista. O casal entrega tudo no estilo casamento por contrato."
+    "motivo": "Para ficar completamente obcecada por um homem rico, poderoso e marrento que odeia o world inteiro, menos a protagonista. O casal entrega tudo no estilo casamento por contrato."
   },
   {
     "titulo": "Gente Normal",
@@ -696,3 +647,4 @@
     "tags": ["fofura pura", "lgbt", "namorados", "coração quentinho", "escola", "hq", "leitura rápida", "fofo", "dorama vibe", "meta de vida"],
     "motivo": "Se a sua semana foi horrível e estressante, essa HQ é o remédio. É o romance mais puro, fofo e confortável da internet para deixar a vida com uma vibe boa."
   }
+]
