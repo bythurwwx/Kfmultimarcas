@@ -2,16 +2,22 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarinha Abelha 🐝</title>
     <style>
-        :root { --bg: #fffdf0; --card: #ffffff; --text: #333; --accent: #ffc107; --dark: #34495e; }
-        body.dark-mode { --bg: #1a1a1a; --card: #2d2d2d; --text: #f0f0f0; }
+        :root { --bg: #fffdf0; --card: #ffffff; --text: #333; --accent: #ffc107; --border: #ffeeba; }
+        body.dark-mode { --bg: #1a1a1a; --card: #2d2d2d; --text: #f0f0f0; --border: #444; }
+        
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; transition: 0.3s; }
         .card { background: var(--card); padding: 30px; border-radius: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; border: 2px solid var(--accent); }
-        .bee-icon { font-size: 50px; cursor: pointer; }
-        select, textarea { width: 100%; margin: 10px 0; padding: 12px; border-radius: 12px; border: 1px solid #ddd; }
-        button { background: var(--accent); border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        .bee-icon { font-size: 50px; cursor: pointer; margin-bottom: 10px; }
+        
+        select, textarea { width: 100%; margin: 10px 0; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+        button { background: var(--accent); border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { opacity: 0.9; }
+        
         #resultado, #historico { margin-top: 20px; text-align: left; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; display: none; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
@@ -27,11 +33,11 @@
         <option value="suspense">Suspense/Mistério</option>
     </select>
 
-    <textarea id="userInput" placeholder="Como você está se sentindo?"></textarea>
+    <textarea id="userInput" placeholder="Ex: Estou apaixonada, estou cansada, preciso de paz..."></textarea>
     <button onclick="buscarLivro()">Encontrar Recomendação</button>
 
     <div id="resultado">
-        <h3 id="tituloLivro"></h3>
+        <h3 id="tituloLivro" style="color: var(--accent);"></h3>
         <p id="motivoLivro"></p>
     </div>
 
@@ -43,11 +49,16 @@
 
 <script>
     const acervo = [
-        { "titulo": "O Poder do Agora", "autor": "Eckhart Tolle", "categoria": "pessoal", "tags": ["ansiedade", "estresse", "medo"], "motivo": "Foque no presente." },
-        { "titulo": "A Sutil Arte de Ligar o F*da-se", "autor": "Mark Manson", "categoria": "pessoal", "tags": ["trabalho", "pressao", "falhei"], "motivo": "Desapegue de cobranças." },
-        { "titulo": "Mentirosos", "autor": "E. Lockhart", "categoria": "suspense", "tags": ["plot twist", "verão", "surto"], "motivo": "Vai explodir sua mente." },
-        { "titulo": "O Duque e Eu", "autor": "Julia Quinn", "categoria": "romance", "tags": ["slow burn", "fofo", "epóca"], "motivo": "Romance épico de época." }
-        // ... (você pode manter o restante da lista anterior aqui)
+        { "titulo": "Melhor do que nos Filmes", "autor": "Lynn Painter", "categoria": "romance", "tags": ["estou apaixonada", "apaixonada", "crush", "lovezinho", "namoro"], "motivo": "Para quem está vivendo o auge da paixão!" },
+        { "titulo": "As Vantagens de Ser Invisível", "autor": "Stephen Chbosky", "categoria": "pessoal", "tags": ["estou triste", "quero chorar", "me sinto sozinha", "bad"], "motivo": "Um abraço em forma de livro para dias difíceis." },
+        { "titulo": "O Poder do Agora", "autor": "Eckhart Tolle", "categoria": "pessoal", "tags": ["preciso de paz", "estou ansiosa", "mente cheia", "calma"], "motivo": "Para silenciar a mente e encontrar a paz." },
+        { "titulo": "A Sutil Arte de Ligar o F*da-se", "autor": "Mark Manson", "categoria": "pessoal", "tags": ["estou cansada", "cansada", "sem paciência", "que ódio", "fase ruim"], "motivo": "Para você aprender a ignorar o que não te faz bem." },
+        { "titulo": "Os Sete Maridos de Evelyn Hugo", "autor": "Taylor Jenkins Reid", "categoria": "romance", "tags": ["estou entediada", "quero fofoca", "quero luxo", "estou carente"], "motivo": "Muita fofoca e glamour para distrair sua mente." },
+        { "titulo": "A Biblioteca da Meia-Noite", "autor": "Matt Haig", "categoria": "pessoal", "tags": ["estou perdida", "vida sem sentido", "e se", "mudança"], "motivo": "Para quando você se sentir estagnada na vida." },
+        { "titulo": "Mentirosos", "autor": "E. Lockhart", "categoria": "suspense", "tags": ["quero um surto", "estou curiosa", "plot twist"], "motivo": "Para você surtar com um final inesperado." },
+        { "titulo": "O Milagre da Manhã", "autor": "Hal Elrod", "categoria": "pessoal", "tags": ["preciso mudar", "estou estagnada", "nova rotina"], "motivo": "O empurrão que faltava para começar uma nova vida." },
+        { "titulo": "Não se apega, não", "autor": "Isabela Freitas", "categoria": "romance", "tags": ["estou sofrendo", "ele me ignorou", "terminamos"], "motivo": "O desapego que você precisa ouvir agora." },
+        { "titulo": "Essencialismo", "autor": "Greg McKeown", "categoria": "pessoal", "tags": ["estou sobrecarregada", "muita coisa", "ajuda"], "motivo": "Para filtrar o que realmente importa e respirar." }
     ];
 
     function toggleTheme() { document.body.classList.toggle('dark-mode'); }
@@ -66,13 +77,12 @@
             document.getElementById('tituloLivro').innerText = sugestao.titulo;
             document.getElementById('motivoLivro').innerText = sugestao.motivo;
             
-            // Adicionar ao histórico
             document.getElementById('historico').style.display = 'block';
             const li = document.createElement('li');
             li.innerText = sugestao.titulo;
             document.getElementById('listaHistorico').appendChild(li);
         } else {
-            alert("Clarinha está voando baixo! Tente descrever melhor seu sentimento.");
+            alert("A Clarinha ainda não entende esse sentimento! Tente algo como 'estou cansada' ou 'estou apaixonada'. 🐝");
         }
     }
 </script>
