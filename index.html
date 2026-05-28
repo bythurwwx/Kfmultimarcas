@@ -5,44 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarinha Abelha 🐝</title>
     <style>
-        :root { --bg: #fffdf0; --card: #ffffff; --text: #333; --accent: #ffc107; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; justify-content: center; padding: 20px; transition: 0.3s; }
-        .card { background: var(--card); padding: 30px; border-radius: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; border: 2px solid var(--accent); }
-        .bee-icon { font-size: 50px; margin-bottom: 10px; }
-        textarea { width: 100%; margin: 10px 0; padding: 12px; border-radius: 12px; border: 1px solid #ddd; }
-        button { background: var(--accent); border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        :root { --bg: #fffdf0; --card: #ffffff; --text: #333; --accent: #ffc107; --border: #ffeeba; }
+        body.dark-mode { --bg: #1a1a1a; --card: #2d2d2d; --text: #f0f0f0; --border: #444; }
         
-        #resultado { 
-            margin-top: 20px; 
-            padding: 20px; 
-            font-size: 24px; 
-            font-weight: bold; 
-            color: #d35400; 
-            display: none; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; transition: 0.3s; }
+        .card { background: var(--card); padding: 30px; border-radius: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; border: 2px solid var(--accent); }
+        .bee-icon { font-size: 50px; cursor: pointer; margin-bottom: 10px; display: inline-block; transition: transform 0.2s; }
+        .bee-icon:hover { transform: scale(1.1); }
+        
+        select, textarea { width: 100%; margin: 10px 0; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); box-sizing: border-box; }
+        button { background: var(--accent); border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
+        button:hover:not(:disabled) { opacity: 0.9; }
+        button:disabled { cursor: not-allowed; opacity: 0.6; }
+        
+        #resultado, #historico { margin-top: 20px; text-align: left; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; display: none; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <div class="bee-icon">🐝O.O</div>
+    <div class="bee-icon" onclick="toggleTheme()">🐝</div>
     <h1>Clarinha Abelha</h1>
-    <textarea id="userInput" placeholder="Como você está se sentindo?"></textarea>
-    <button onclick="buscarLivro()">Encontrar Recomendação</button>
+    
+    <select id="filtroCategoria">
+        <option value="todos">Todas as categorias</option>
+        <option value="pessoal">Autoajuda/Pessoal</option>
+        <option value="romance">Romance</option>
+        <option value="suspense">Suspense/Mistério</option>
+    </select>
+
+    <textarea id="userInput" placeholder="Ex: feliz, dinheiro, escola, ex..."></textarea>
+    <button id="btnBuscar" onclick="buscarLivro(event)">Encontrar Recomendação</button>
 
     <div id="resultado">
-        E o kiko?😂
+        <h3 id="tituloLivro" style="color: var(--accent);"></h3>
+        <p id="motivoLivro"></p>
+    </div>
+
+    <div id="historico">
+        <h4>Histórico recente:</h4>
+        <ul id="listaHistorico"></ul>
     </div>
 </div>
 
 <script>
-    function buscarLivro() {
-        const input = document.getElementById('userInput').value;
-        if(input.trim() !== "") {
-            document.getElementById('resultado').style.display = 'block';
-        } else {
-            alert("Escreva algo primeiro!");
-        }
+    const acervo = [
+        { "titulo": "Melhor do que nos Filmes", "autor": "Lynn Painter", "categoria": "romance", "tags": ["apaixonada", "crush"], "motivo": "Para quem está vivendo o auge da paixão!" },
+        { "titulo": "As Vantagens de Ser Invisível", "autor": "Stephen Chbosky", "categoria": "pessoal", "tags": ["triste", "escola"], "motivo": "Uma jornada sobre crescer e encontrar seu lugar." },
+        { "titulo": "Pai Rico, Pai Pobre", "autor": "Robert Kiyosaki", "categoria": "pessoal", "tags": ["dinheiro", "mega sena"], "motivo": "Para aprender a cuidar do seu futuro tesouro!" },
+        { "titulo": "Hábitos Atômicos", "autor": "James Clear", "categoria": "pessoal", "tags": ["estudar", "escola"], "motivo": "O segredo para transformar seus estudos em vitórias." },
+        { "titulo": "Comer, Rezar, Amar", "autor": "Elizabeth Gilbert", "categoria": "pessoal", "tags": ["feliz", "mudança"], "motivo": "Para celebrar a felicidade de se reencontrar." },
+        { "titulo": "A Sutil Arte de Ligar o F*da-se", "autor": "Mark Manson", "categoria": "pessoal", "tags": ["ex", "cansada"], "motivo": "O ex? Passado! Foco no que realmente importa." },
+        { "titulo": "Os Sete Maridos de Evelyn Hugo", "autor": "Taylor Jenkins Reid", "categoria": "romance", "tags": ["ex", "luxo"], "motivo": "Porque às vezes o passado tem fofocas incríveis." },
+        { "titulo": "A Biblioteca da Meia-Noite", "autor": "Matt Haig", "categoria": "pessoal", "tags": ["perdida", "feliz"], "motivo": "Para descobrir que a felicidade pode estar onde menos esperamos." },
+        { "titulo": "Mentirosos", "autor": "E. Lockhart", "categoria": "suspense", "tags": ["escola", "surto"], "motivo": "Mistérios que vão te prender do início ao fim." }
+    ];
+
+    function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+
+    function buscarLivro(event) {
+        const input = document.getElementById('userInput').value.toLowerCase();
+        const categoria = document.getElementById('filtroCategoria').value;
+        const btn = document.getElementById('btnBuscar');
+        
+        const sugestao = acervo.find(l => 
+            (categoria === "todos" || l.categoria === categoria) && 
+            l.tags.some(tag => input.includes(tag))
+        );
+
+        const textoOriginal = btn.innerText;
+        btn.innerText = "🐝 Procurando o néctar...";
+        btn.disabled = true;
+
+        setTimeout(() => {
+            if(sugestao) {
+                document.getElementById('resultado').style.display = 'block';
+                document.getElementById('tituloLivro').innerText = sugestao.titulo;
+                document.getElementById('motivoLivro').innerText = sugestao.motivo;
+                
+                document.getElementById('historico').style.display = 'block';
+                const lista = document.getElementById('listaHistorico');
+                const li = document.createElement('li');
+                li.innerText = sugestao.titulo;
+                lista.prepend(li);
+                
+                if (lista.children.length > 3) lista.removeChild(lista.lastChild);
+                document.getElementById('userInput').value = '';
+            } else {
+                alert("A Clarinha ainda não tem um livro para esse sentimento! Tente palavras como: feliz, dinheiro, escola ou ex. 🐝");
+            }
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+        }, 600);
     }
 </script>
 
