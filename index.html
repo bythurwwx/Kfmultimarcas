@@ -3,117 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bússola Literária - Encontre seu próximo livro</title>
+    <title>Bússola Literária</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f4f1ea;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        p.subtitle {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .search-box {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 120px;
-            padding: 15px;
-            border: 1px solid #dcdde1;
-            border-radius: 10px;
-            resize: none;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        textarea:focus {
-            border-color: #34495e;
-        }
-
-        button {
-            background-color: #34495e;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #2c3e50;
-        }
-
-        .result-container {
-            margin-top: 20px;
-            text-align: left;
-            display: none;
-        }
-
-        .book-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 5px solid #34495e;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .book-title {
-            font-size: 1.4rem;
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .book-author {
-            font-style: italic;
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-
-        .book-description {
-            line-height: 1.6;
-            color: #555;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f1ea; color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; width: 100%; text-align: center; }
+        h1 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 10px; }
+        p.subtitle { color: #7f8c8d; margin-bottom: 30px; font-size: 1.1rem; }
+        .search-box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        textarea { width: 100%; height: 120px; padding: 15px; border: 1px solid #dcdde1; border-radius: 10px; resize: none; font-size: 1rem; margin-bottom: 15px; outline: none; }
+        button { background-color: #34495e; color: white; border: none; padding: 12px 25px; font-size: 1rem; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+        button:hover { background-color: #2c3e50; }
+        .result-container { margin-top: 20px; text-align: left; display: none; }
+        .book-card { background: white; padding: 20px; border-radius: 12px; border-left: 5px solid #34495e; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .book-title { font-size: 1.4rem; color: #2c3e50; margin-bottom: 5px; font-weight: bold; }
+        .book-author { font-style: italic; color: #7f8c8d; margin-bottom: 15px; }
+        .book-description { line-height: 1.6; color: #555; }
     </style>
 </head>
 <body>
@@ -123,7 +28,7 @@
         <p class="subtitle">Desabafe sobre o seu momento atual e nós te indicaremos o livro certo.</p>
 
         <div class="search-box">
-            <textarea id="userInput" placeholder="Ex: Estou muito cansado da rotina... ou Terminei meu relacionamento e está difícil superar."></textarea>
+            <textarea id="userInput" placeholder="Ex: Estou desanimado com o meu trabalho ou sem grana para pagar as contas..."></textarea>
             <button onclick="buscarLivro()">Encontrar Recomendação</button>
         </div>
 
@@ -137,40 +42,16 @@
         </div>
     </div>
 
-    <!-- Motor inserido direto aqui para garantir que vai rodar sem depender de outro arquivo -->
     <script>
-        const acervoLivros = [
-            {
-                titulo: "O Poder do Agora",
-                autor: "Eckhart Tolle",
-                tags: ["ansiedade", "futuro", "preocupado", "mente", "estresse", "ansiosa", "ansioso", "pensamentos", "pensando demais", "acelerado", "acelerada", "medo do futuro", "preocupada", "crise"],
-                motivo: "Este livro é perfeito para acalmar a mente e focar no presente. Se você está ansioso com o futuro ou preso a pensamentos repetitivos, ele te ajuda a encontrar clareza e paz."
-            },
-            {
-                titulo: "A Sutil Arte de Ligar o F*da-se",
-                autor: "Mark Manson",
-                tags: ["trabalho", "pressao", "cobrança", "fracasso", "perdido", "desanimado", "carreira", "pressão", "cobrando", "falhei", "errado", "desanimada", "cansado das pessoas", "opinião", "estressado"],
-                motivo: "Ideal para momentos de crise profissional ou quando você sente que está se cobrando demais. Ele traz uma perspectiva realista sobre aceitar as falhas e focar no que realmente importa."
-            },
-            {
-                titulo: "Mulheres que Correm com os Lobos",
-                autor: "Clarissa Pinkola Estés",
-                tags: ["termino", "solitude", "autoconhecimento", "identidade", "superar", "mulher", "relacionamento", "término", "fim", "terminei", "ex", "namorado", "namorada", "sozinha", "sozinho", "solitário", "solitária"],
-                motivo: "Um clássico sobre o resgate da força interior e intuição. Excelente para quem está passando por términos, separações ou momentos de redescoberta pessoal e independência."
-            },
-            {
-                titulo: "O Alquimista",
-                autor: "Paulo Coelho",
-                tags: ["escolhas", "duvida", "destino", "sonhos", "mudar", "mudança", "dúvida", "inseguro", "insegura", "rumo", "caminho", "decisão", "decidir", "projeto", "recomeçar"],
-                motivo: "Uma história inspiradora sobre seguir seus sonhos e ouvir seu coração. Ótimo para quando você está em uma encruzilhada na vida e precisa de motivação para continuar e confiar na jornada."
-            },
-            {
-                titulo: "Essencialismo",
-                autor: "Greg McKeown",
-                tags: ["cansado", "cansada", "sem tempo", "produtividade", "foco", "rotina", "tarefas", "esgotado", "esgotada", "sobrecarregado", "sobrecarregada", "muita coisa", "correria", "tempo"],
-                motivo: "Se você sente que está fazendo muita coisa mas não sai do lugar, este livro ensina a eliminar o que é desnecessário para focar apenas no que realmente gera valor na sua vida."
-            }
-        ];
+        let acervoLivros = [];
+
+        // Motor que puxa os dados do arquivo JSON externo automaticamente
+        window.onload = function() {
+            fetch('livros.json')
+                .then(response => response.json())
+                .then(data => { acervoLivros = data; })
+                .catch(err => console.error("Erro ao carregar acervo de livros:", err));
+        };
 
         function buscarLivro() {
             const textoUsuario = document.getElementById('userInput').value.toLowerCase().trim();
@@ -187,9 +68,7 @@
             acervoLivros.forEach(livro => {
                 let combinacoes = 0;
                 livro.tags.forEach(tag => {
-                    if (textoUsuario.includes(tag)) {
-                        combinacoes++;
-                    }
+                    if (textoUsuario.includes(tag)) { combinacoes++; }
                 });
 
                 if (combinacoes > maiorNumeroDeCombinacoes) {
@@ -205,7 +84,7 @@
             } else {
                 document.getElementById('bookTitle').innerText = "O Pequeno Príncipe";
                 document.getElementById('bookAuthor').innerText = "Por Antoine de Saint-Exupéry";
-                document.getElementById('bookDescription').innerText = "Não conseguimos identificar uma palavra-chave exata no seu desabafo, mas este clássico é um abraço na alma. Ele ajuda a desacelerar e lembrar o que realmente importa na vida quando tudo parece confuso.";
+                document.getElementById('bookDescription').innerText = "Não encontramos termos específicos no seu desabafo, mas esse clássico acalma o coração em momentos confusos.";
             }
             
             resultContainer.style.display = 'block';
