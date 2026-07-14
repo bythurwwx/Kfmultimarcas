@@ -3,102 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarinha Abelha 🐝</title>
+    <title>Relatório de Consolidação de Custos - Q3 2026</title>
     <style>
-        :root { --bg: #fffdf0; --card: #ffffff; --text: #333; --accent: #ffc107; --border: #ffeeba; }
-        body.dark-mode { --bg: #1a1a1a; --card: #2d2d2d; --text: #f0f0f0; --border: #444; }
-        
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; transition: 0.3s; overflow-x: hidden; }
-        .card { background: var(--card); padding: 30px; border-radius: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; border: 2px solid var(--accent); position: relative; }
-        
-        /* Abelha voando */
-        .bee-icon { font-size: 50px; cursor: pointer; display: inline-block; transition: 0.3s; }
-        .voando { animation: fly 1s ease-in-out infinite alternate; }
-        @keyframes fly { 
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-            100% { transform: translateY(0) rotate(-10deg); }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f2f1;
+            user-select: none;
+            overflow: hidden;
         }
-
-        /* Letras caindo */
-        .letra-caindo { display: inline-block; animation: cair 0.8s forwards; }
-        @keyframes cair {
-            0% { transform: translateY(-200px) rotate(0deg); opacity: 0; }
-            100% { transform: translateY(0) rotate(360deg); opacity: 1; }
+        /* Excel Ribbon Simulator */
+        .excel-header {
+            background-color: #107c41;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        select, textarea { width: 100%; margin: 10px 0; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); box-sizing: border-box; }
-        button { background: var(--accent); border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
-        #resultado, #historico { margin-top: 20px; text-align: left; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; display: none; }
+        .excel-menu {
+            background-color: #f3f2f1;
+            border-bottom: 1px solid #d2d0ce;
+            padding: 6px 16px;
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #323130;
+        }
+        .excel-menu span { cursor: pointer; }
+        .excel-menu span.active {
+            font-weight: bold;
+            border-bottom: 2px solid #107c41;
+            padding-bottom: 4px;
+        }
+        .formula-bar {
+            background-color: white;
+            border-bottom: 1px solid #d2d0ce;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        .formula-bar .cell-address {
+            color: #107c41;
+            font-weight: bold;
+            margin-right: 15px;
+            border-right: 1px solid #d2d0ce;
+            padding-right: 15px;
+        }
+        /* Grid */
+        .grid-container {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .excel-grid {
+            display: grid;
+            grid-template-columns: repeat(15, 35px);
+            grid-template-rows: repeat(15, 25px);
+            border-top: 1px solid #d2d0ce;
+            border-left: 1px solid #d2d0ce;
+            background-color: white;
+            position: relative;
+        }
+        .cell {
+            border-right: 1px solid #e1dfdd;
+            border-bottom: 1px solid #e1dfdd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #323130;
+            font-family: monospace;
+        }
+        /* Snake Elements */
+        .snake-head {
+            background-color: #c7e0f4;
+            border: 1px solid #0078d4 !important;
+        }
+        .snake-body {
+            background-color: #deecf9;
+        }
+        .food {
+            color: #a80000;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #107c41;
+            color: white;
+            padding: 4px 16px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+        /* PANIC SCREEN (The fake report) */
+        #panic-screen {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            z-index: 1000;
+            padding: 30px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .chart-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .chart-bar {
+            width: 40px;
+            background-color: #107c41;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div id="bee" class="bee-icon" onclick="toggleTheme()">🐝</div>
-    <h1 id="tituloClarinha">Clarinha Abelha</h1>
-    
-    <select id="filtroCategoria">
-        <option value="todos">Todas as categorias</option>
-        <option value="pessoal">Autoajuda/Pessoal</option>
-        <option value="romance">Romance</option>
-        <option value="suspense">Suspense/Mistério</option>
-    </select>
-
-    <textarea id="userInput" placeholder="Ex: feliz, dinheiro, escola, ex..."></textarea>
-    <button id="btnBuscar" onclick="buscarLivro()">Encontrar Recomendação</button>
-
-    <div id="resultado">
-        <h3 id="tituloLivro" style="color: var(--accent);"></h3>
-        <p id="motivoLivro"></p>
+    <!-- EXCEL TOP BAR -->
+    <div class="excel-header">
+        <div>Consolidação_Custos_Q3_v4.xlsx - Excel</div>
+        <div style="font-size: 11px;">Suporte TI: Ativo</div>
     </div>
-</div>
+    <div class="excel-menu">
+        <span class="active">Arquivo</span>
+        <span>Página Inicial</span>
+        <span>Inserir</span>
+        <span>Layout da Página</span>
+        <span>Fórmulas</span>
+        <span>Dados</span>
+        <span>Revisão</span>
+        <span>Exibir</span>
+    </div>
+    <div class="formula-bar">
+        <span class="cell-address" id="current-cell">A1</span>
+        <span style="color: #a19f9d; margin-right: 10px;"><i>fx</i></span>
+        <span id="formula-text">=SOMA(PROCV(B2; Dados_Calculados; 4; FALSO))</span>
+    </div>
 
-<script>
-    const acervo = [
-        { "titulo": "Melhor do que nos Filmes", "categoria": "romance", "tags": ["apaixonada", "crush"], "motivo": "Para quem está vivendo o auge da paixão!" },
-        { "titulo": "Pai Rico, Pai Pobre", "categoria": "pessoal", "tags": ["dinheiro", "mega sena"], "motivo": "Para aprender a cuidar do seu tesouro!" },
-        { "titulo": "Hábitos Atômicos", "categoria": "pessoal", "tags": ["estudar", "escola"], "motivo": "Para transformar estudos em vitórias." }
-    ];
+    <!-- GAME AREA -->
+    <div class="grid-container">
+        <div style="margin-bottom: 10px; font-size: 12px; color: #605e5c; text-align: center;">
+            Use as <b>Setas do Teclado</b> para mover a seleção. <br>
+            Aperte <b>ESPAÇO</b> ou <b>ESC</b> para ativar o Modo de Pânico (Disparar Gráfico de Trabalho).
+        </div>
+        <div class="excel-grid" id="grid"></div>
+    </div>
 
-    function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+        <div>Pronto | Acessibilidade: Investigar</div>
+        <div>Métricas Processadas (Score): <span id="score">0</span></div>
+    </div>
 
-    function buscarLivro() {
-        const input = document.getElementById('userInput').value.toLowerCase();
-        const bee = document.getElementById('bee');
-        const titulo = document.getElementById('tituloClarinha');
+    <!-- PANIC SCREEN (FALSO GRÁFICO DE TRABALHO) -->
+    <div id="panic-screen">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #107c41; padding-bottom: 10px;">
+            <h1 style="color: #107c41; margin: 0; font-size: 24px;">Relatório Consolidado de Custos Operacionais (CAPEX vs OPEX)</h1>
+            <span style="font-size: 12px; color: #605e5c;">Atualizado em: Tempo Real</span>
+        </div>
         
-        // 1. Abelha voando
-        bee.classList.add('voando');
+        <p style="font-size: 14px; color: #323130; margin-top: 20px;">
+            Com base na análise volumétrica do terceiro trimestre, identificamos um desvio padrão de 4.2% nos custos indiretos de infraestrutura. As medidas de mitigação sugerem a realocação orçamentária dos departamentos adjacentes conforme a tabela de projeção de cenários abaixo.
+        </p>
+
+        <!-- Fake Data Table -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px;">
+            <thead>
+                <tr style="background-color: #f3f2f1; text-align: left;">
+                    <th style="padding: 8px; border: 1px solid #d2d0ce;">Departamento</th>
+                    <th style="padding: 8px; border: 1px solid #d2d0ce;">Orçamento Q3</th>
+                    <th style="padding: 8px; border: 1px solid #d2d0ce;">Realizado (YTD)</th>
+                    <th style="padding: 8px; border: 1px solid #d2d0ce;">Desvio Nominal</th>
+                    <th style="padding: 8px; border: 1px solid #d2d0ce;">Status de Alocação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; font-weight: bold;">Tecnologia & Inovação</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 450.000,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 423.500,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; color: green;">- R$ 26.500,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;"><span style="background-color: #dff6dd; color: #107c41; padding: 2px 6px; border-radius: 4px; font-size: 11px;">Otimizado</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; font-weight: bold;">Marketing de Performance</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 280.000,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 295.120,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; color: red;">+ R$ 15.120,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;"><span style="background-color: #fde7e9; color: #a80000; padding: 2px 6px; border-radius: 4px; font-size: 11px;">Atenção</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; font-weight: bold;">Operações Logísticas</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 890.000,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;">R$ 889.000,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce; color: green;">- R$ 1.000,00</td>
+                    <td style="padding: 8px; border: 1px solid #d2d0ce;"><span style="background-color: #dff6dd; color: #107c41; padding: 2px 6px; border-radius: 4px; font-size: 11px;">Estável</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Fake Chart -->
+        <h3 style="margin-top: 30px; color: #323130;">Projeção de Performance Operacional (Simulação Monte Carlo)</h3>
+        <div class="chart-container" style="align-items: flex-end; height: 150px; border-left: 2px solid #8a8886; border-bottom: 2px solid #8a8886; padding-left: 10px;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="chart-bar" style="height: 40px;"></div>
+                <span style="font-size: 11px; margin-top: 5px;">Jul</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="chart-bar" style="height: 75px;"></div>
+                <span style="font-size: 11px; margin-top: 5px;">Ago</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="chart-bar" style="height: 110px;"></div>
+                <span style="font-size: 11px; margin-top: 5px;">Set</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="chart-bar" style="height: 140px; background-color: #107c41;"></div>
+                <span style="font-size: 11px; margin-top: 5px; font-weight: bold;">Meta (Out)</span>
+            </div>
+        </div>
         
-        // 2. Letras caindo
-        const texto = "Clarinha Abelha";
-        titulo.innerHTML = "";
-        [...texto].forEach((letra, i) => {
-            const span = document.createElement('span');
-            span.innerText = letra === " " ? "\u00A0" : letra;
-            span.className = "letra-caindo";
-            span.style.animationDelay = `${i * 0.05}s`;
-            titulo.appendChild(span);
+        <div style="margin-top: 30px; font-size: 12px; color: #a19f9d; text-align: right;">
+            Pressione <b>ESPAÇO</b> ou <b>ESC</b> novamente para voltar ao trabalho... digo, ao jogo.
+        </div>
+    </div>
+
+    <script>
+        const GRID_SIZE = 15;
+        const grid = document.getElementById('grid');
+        const scoreEl = document.getElementById('score');
+        const cellAddressEl = document.getElementById('current-cell');
+        const panicScreen = document.getElementById('panic-screen');
+        
+        let snake = [{x: 7, y: 7}];
+        let direction = {x: 0, y: 0};
+        let food = {x: 3, y: 3};
+        let score = 0;
+        let isPanic = false;
+        let gameInterval;
+
+        // Render grid cells
+        const cells = [];
+        for (let y = 0; y < GRID_SIZE; y++) {
+            for (let x = 0; x < GRID_SIZE; x++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                // Excel Column letters
+                const colLetter = String.fromCharCode(65 + x);
+                cell.innerText = `${colLetter}${y + 1}`;
+                grid.appendChild(cell);
+                cells.push({x, y, element: cell});
+            }
+        }
+
+        function draw() {
+            // Clear past styling
+            cells.forEach(c => {
+                c.element.className = 'cell';
+                const colLetter = String.fromCharCode(65 + c.x);
+                c.element.innerText = `${colLetter}${c.y + 1}`;
+                c.element.style.color = '#e1dfdd'; // Subtle text so it looks like numbers in excel
+            });
+
+            // Draw Food (Excel Error)
+            const foodCell = cells.find(c => c.x === food.x && c.y === food.y);
+            if (foodCell) {
+                foodCell.element.innerText = '#N/D';
+                foodCell.element.classList.add('food');
+                foodCell.element.style.color = '#a80000';
+            }
+
+            // Draw Snake (Selection Box)
+            snake.forEach((part, index) => {
+                const cell = cells.find(c => c.x === part.x && c.y === part.y);
+                if (cell) {
+                    if (index === 0) {
+                        cell.element.classList.add('snake-head');
+                        // Update Excel Namebox
+                        const colLetter = String.fromCharCode(65 + part.x);
+                        cellAddressEl.innerText = `${colLetter}${part.y + 1}`;
+                    } else {
+                        cell.element.classList.add('snake-body');
+                    }
+                    cell.element.innerText = '9.420'; // Looks like formatted corporate data
+                    cell.element.style.color = '#004578';
+                }
+            });
+        }
+
+        function move() {
+            if (direction.x === 0 && direction.y === 0) return;
+
+            const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+
+            // Wall collision (teleport to other side to keep it casual)
+            if (head.x < 0) head.x = GRID_SIZE - 1;
+            if (head.x >= GRID_SIZE) head.x = 0;
+            if (head.y < 0) head.y = GRID_SIZE - 1;
+            if (head.y >= GRID_SIZE) head.y = 0;
+
+            // Self collision
+            if (snake.some(part => part.x === head.x && part.y === head.y)) {
+                // Reset Game
+                snake = [{x: 7, y: 7}];
+                direction = {x: 0, y: 0};
+                score = 0;
+                scoreEl.innerText = score;
+                generateFood();
+                return;
+            }
+
+            snake.unshift(head);
+
+            // Check if ate the error (#N/D)
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                scoreEl.innerText = score;
+                generateFood();
+            } else {
+                snake.pop();
+            }
+        }
+
+        function generateFood() {
+            food = {
+                x: Math.floor(Math.random() * GRID_SIZE),
+                y: Math.floor(Math.random() * GRID_SIZE)
+            };
+            // Don't spawn food on the snake
+            if (snake.some(part => part.x === food.x && part.y === food.y)) {
+                generateFood();
+            }
+        }
+
+        // Control Inputs
+        window.addEventListener('keydown', e => {
+            if (e.key === ' ' || e.key === 'Escape') {
+                e.preventDefault();
+                togglePanic();
+                return;
+            }
+
+            if (isPanic) return; // Disable controls during panic
+
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (direction.y !== 1) direction = {x: 0, y: -1};
+                    break;
+                case 'ArrowDown':
+                    if (direction.y !== -1) direction = {x: 0, y: 1};
+                    break;
+                case 'ArrowLeft':
+                    if (direction.x !== 1) direction = {x: -1, y: 0};
+                    break;
+                case 'ArrowRight':
+                    if (direction.x !== -1) direction = {x: 1, y: 0};
+                    break;
+            }
         });
 
-        // 3. Pegadinha do Kiko
-        setTimeout(() => {
-            alert("E o kiko??? 😂");
-            bee.classList.remove('voando');
-            
-            const sugestao = acervo.find(l => l.tags.some(t => input.includes(t)));
-            if(sugestao) {
-                document.getElementById('resultado').style.display = 'block';
-                document.getElementById('tituloLivro').innerText = sugestao.titulo;
-                document.getElementById('motivoLivro').innerText = sugestao.motivo;
+        function togglePanic() {
+            isPanic = !isPanic;
+            if (isPanic) {
+                panicScreen.style.display = 'block';
+                clearInterval(gameInterval);
+                document.title = "Relatório Consolidado de Custos - Q3 2026";
             } else {
-                alert("A Clarinha não achou nada!");
+                panicScreen.style.display = 'none';
+                gameInterval = setInterval(gameLoop, 150);
+                document.title = "Excel - Consolidação de Custos";
             }
-        }, 1200);
-    }
-</script>
+        }
 
+        function gameLoop() {
+            move();
+            draw();
+        }
+
+        // Start
+        generateFood();
+        gameInterval = setInterval(gameLoop, 150);
+    </script>
 </body>
 </html>
