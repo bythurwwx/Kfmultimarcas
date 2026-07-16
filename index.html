@@ -3,388 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Studio Code</title>
+    <title>Relatorio_Consolidado_Q3_2026.xlsx - Excel</title>
     <style>
-        :root {
-            --bg-color: #1e1e1e;
-            --sidebar-bg: #252526;
-            --tab-active: #1e1e1e;
-            --tab-inactive: #2d2d2d;
-            --text-color: #d4d4d4;
-            --keyword: #569cd6;
-            --string: #ce9178;
-            --comment: #6a9955;
-            --terminal-green: #4af626;
-        }
-
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: var(--bg-color);
-            font-family: 'Consolas', 'Courier New', Courier, monospace;
-            color: var(--text-color);
-            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f3f2f1;
+            color: #323130;
+            font-size: 11pt;
             user-select: none;
+            overflow: hidden;
         }
-
-        .container {
+        /* Excel Top Bar */
+        .excel-header {
+            background-color: #107c41;
+            color: white;
+            padding: 8px 16px;
             display: flex;
-            height: 100vh;
-        }
-
-        /* Sidebar imitando o VS Code */
-        .sidebar {
-            width: 50px;
-            background-color: #333333;
-            display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            padding-top: 10px;
-            gap: 20px;
-        }
-        .sidebar-icon {
-            width: 25px;
-            height: 25px;
-            opacity: 0.4;
-            border-left: 2px solid transparent;
-        }
-        .sidebar-icon.active {
-            opacity: 1;
-            border-left-color: #007acc;
-        }
-
-        .file-tree {
-            width: 200px;
-            background-color: var(--sidebar-bg);
-            padding: 10px;
-            font-size: 13px;
-        }
-        .file-tree h3 {
-            font-size: 11px;
-            text-transform: uppercase;
-            margin: 0 0 10px 0;
-            opacity: 0.6;
-        }
-        .file-item {
-            padding: 4px 10px;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-        .file-item:hover {
-            background-color: #2a2d2e;
-        }
-
-        /* Área de Código */
-        .editor-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tabs {
-            display: flex;
-            background-color: #252526;
-            height: 35px;
-            font-size: 13px;
-        }
-        .tab {
-            padding: 8px 30px;
-            background-color: var(--tab-inactive);
-            border-right: 1px solid #252526;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        .tab.active {
-            background-color: var(--tab-active);
-            border-top: 1px solid #007acc;
-        }
-
-        .code-view {
-            flex: 1;
-            padding: 20px;
-            font-size: 14px;
-            line-height: 1.5;
-            white-space: pre;
-            overflow-y: auto;
-            border-bottom: 1px solid #414141;
-        }
-
-        /* Terminal de Jogo */
-        .terminal-area {
-            height: 40%;
-            background-color: #1e1e1e;
-            display: flex;
-            flex-direction: column;
-            border-top: 1px solid #414141;
-        }
-
-        .terminal-header {
-            background-color: #252526;
-            padding: 5px 20px;
+            font-weight: 600;
             font-size: 12px;
+        }
+        .excel-menu {
+            background-color: #f3f2f1;
+            border-bottom: 1px solid #d2d0ce;
+            padding: 6px 16px;
             display: flex;
-            gap: 20px;
-            border-bottom: 1px solid #333;
+            gap: 15px;
+            font-size: 11px;
+            color: #505050;
         }
-        .terminal-tab {
-            border-bottom: 1px solid #007acc;
-            padding-bottom: 3px;
-            font-weight: bold;
-        }
-
-        .terminal-body {
-            flex: 1;
-            padding: 15px;
-            font-size: 13px;
-            overflow-y: auto;
-            color: #d4d4d4;
-        }
-
-        .terminal-input-line {
+        .excel-menu span { cursor: pointer; }
+        .excel-menu span:hover { color: #107c41; font-weight: bold; }
+        
+        /* Formula Bar */
+        .formula-bar {
             display: flex;
             align-items: center;
-            margin-top: 5px;
+            background: white;
+            border-bottom: 1px solid #d2d0ce;
+            padding: 4px 8px;
+            font-family: Consolas, monospace;
+            font-size: 12px;
         }
-        .prompt {
-            color: var(--terminal-green);
-            margin-right: 8px;
+        .formula-bar .cell-address {
+            width: 50px;
+            border-right: 1px solid #d2d0ce;
+            padding-right: 8px;
+            font-weight: bold;
+            color: #505050;
         }
-        .terminal-input {
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-family: inherit;
-            font-size: 13px;
-            outline: none;
-            flex: 1;
+        .formula-bar .formula-input {
+            padding-left: 8px;
+            color: #323130;
+            flex-grow: 1;
         }
 
-        /* Syntax highlighting falsa */
-        .kw { color: var(--keyword); }
-        .str { color: var(--string); }
-        .com { color: var(--comment); }
+        /* Spreadsheet Grid */
+        .grid-container {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 6px 10px;
+            text-align: left;
+            height: 20px;
+        }
+        th {
+            background-color: #f3f2f1;
+            color: #323130;
+            font-weight: normal;
+            font-size: 11px;
+            text-align: center;
+            width: 80px;
+        }
+        .row-num {
+            background-color: #f3f2f1;
+            text-align: center;
+            font-size: 11px;
+            width: 40px;
+            color: #323130;
+        }
+        
+        /* Game elements styled as pure corporate data */
+        .btn-action {
+            background: #f3f2f1;
+            border: 1px solid #8a8886;
+            color: #323130;
+            padding: 2px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 2px;
+            font-family: inherit;
+        }
+        .btn-action:hover {
+            background: #edebe9;
+            border-color: #107c41;
+        }
+        .positive { color: #107c41; font-weight: 600; }
+        .negative { color: #a80000; font-weight: 600; }
+        .highlight { background-color: #f3f9f5; }
+        
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #107c41;
+            color: white;
+            padding: 4px 16px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        /* Panic Mode Overlay */
+        #panic-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            padding: 40px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="sidebar">
-        <div style="background: #007acc; width: 3px; height: 3px; border-radius: 50%;"></div>
-        <div style="color: #fff; font-size: 20px; opacity: 0.8;">📄</div>
-        <div style="color: #fff; font-size: 20px; opacity: 0.3;">🔍</div>
-        <div style="color: #fff; font-size: 20px; opacity: 0.3;">🌿</div>
+    <div class="excel-header">
+        <div>📁 Relatorio_Consolidado_Q3_2026.xlsx - Salvo no SharePoint</div>
+        <div style="font-size: 11px;">🔒 Conexão Segura SSL</div>
+    </div>
+    <div class="excel-menu">
+        <span>Página Inicial</span>
+        <span>Inserir</span>
+        <span>Desenhar</span>
+        <span>Layout da Página</span>
+        <span>Fórmulas</span>
+        <span>Dados</span>
+        <span>Revisão</span>
+        <span>Exibir</span>
+        <span style="color: #a80000; font-weight: bold;" onclick="togglePanic()">⚠️ MODO PANICO (ESC)</span>
     </div>
 
-    <div class="file-tree">
-        <h3>PROJETO: api-core</h3>
-        <div class="file-item" style="color: #4ec9b0;">📂 src</div>
-        <div class="file-item" style="padding-left: 20px;">📄 server.py</div>
-        <div class="file-item" style="padding-left: 20px;">📄 auth.py</div>
-        <div class="file-item" style="padding-left: 20px;">📄 database.js</div>
-        <div class="file-item">📄 package.json</div>
-        <div class="file-item">📄 .env</div>
+    <div class="formula-bar">
+        <div class="cell-address" id="cell-focus">B4</div>
+        <div class="formula-input" id="formula-text">=SUM(B2:D15) * VAR_MARKET_INDEX</div>
     </div>
 
-    <div class="editor-area">
-        <div class="tabs">
-            <div class="tab active">server.py</div>
-            <div class="tab">database.js</div>
-            <div class="tab">.env</div>
-        </div>
-        
-        <div class="code-view">
-<span class="kw">import</span> os
-<span class="kw">import</span> sys
-<span class="kw">from</span> flask <span class="kw">import</span> Flask, jsonify, request
+    <div class="grid-container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30px;"></th>
+                    <th>A (Ativo)</th>
+                    <th>B (Preço Médio)</th>
+                    <th>C (Preço Atual)</th>
+                    <th>D (Variação)</th>
+                    <th>E (Qtd. Carteira)</th>
+                    <th>F (Ações Comerciais)</th>
+                    <th>G (Status de Mercado)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight">
+                    <td class="row-num">1</td>
+                    <td style="font-weight: bold;">SALDO DISPONÍVEL</td>
+                    <td id="cash" style="font-weight: bold;" class="positive">$10,000.00</td>
+                    <td style="color: #8a8886;">Meta Trimestre:</td>
+                    <td id="target" style="font-weight: bold;">$100,000.00</td>
+                    <td style="color: #8a8886;">Rodada / Turno:</td>
+                    <td id="turn" style="font-weight: bold;">1 / 30</td>
+                    <td><span class="positive">DENTRO DA META</span></td>
+                </tr>
+                <tr style="height: 10px;"><td class="row-num" style="height: 10px;">2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                
+                <tr onclick="updateFormula('A3', 'PROD_KAPPA')">
+                    <td class="row-num">3</td>
+                    <td>PROD_KAPPA (Aço)</td>
+                    <td>$ 150.00</td>
+                    <td id="price-0">$ 150.00</td>
+                    <td id="trend-0" class="positive">+0.0%</td>
+                    <td id="qty-0">0</td>
+                    <td>
+                        <button class="btn-action" onclick="buy(0)">COMPRAR</button>
+                        <button class="btn-action" onclick="sell(0)">VENDER</button>
+                    </td>
+                    <td id="status-0" style="color:#505050;">Estável</td>
+                </tr>
+                <tr onclick="updateFormula('A4', 'PROD_SIGMA')">
+                    <td class="row-num">4</td>
+                    <td>PROD_SIGMA (Cobre)</td>
+                    <td>$ 320.00</td>
+                    <td id="price-1">$ 320.00</td>
+                    <td id="trend-1" class="positive">+0.0%</td>
+                    <td id="qty-1">0</td>
+                    <td>
+                        <button class="btn-action" onclick="buy(1)">COMPRAR</button>
+                        <button class="btn-action" onclick="sell(1)">VENDER</button>
+                    </td>
+                    <td id="status-1" style="color:#505050;">Estável</td>
+                </tr>
+                <tr onclick="updateFormula('A5', 'PROD_OMEGA')">
+                    <td class="row-num">5</td>
+                    <td>PROD_OMEGA (Lítio)</td>
+                    <td>$ 850.00</td>
+                    <td id="price-2">$ 850.00</td>
+                    <td id="trend-2" class="positive">+0.0%</td>
+                    <td id="qty-2">0</td>
+                    <td>
+                        <button class="btn-action" onclick="buy(2)">COMPRAR</button>
+                        <button class="btn-action" onclick="sell(2)">VENDER</button>
+                    </td>
+                    <td id="status-2" style="color:#505050;">Estável</td>
+                </tr>
+                <tr onclick="updateFormula('A6', 'PROD_DELTA')">
+                    <td class="row-num">6</td>
+                    <td>PROD_DELTA (Silício)</td>
+                    <td>$ 45.00</td>
+                    <td id="price-3">$ 45.00</td>
+                    <td id="trend-3" class="positive">+0.0%</td>
+                    <td id="qty-3">0</td>
+                    <td>
+                        <button class="btn-action" onclick="buy(3)">COMPRAR</button>
+                        <button class="btn-action" onclick="sell(3)">VENDER</button>
+                    </td>
+                    <td id="status-3" style="color:#505050;">Estável</td>
+                </tr>
 
-<span class="com"># Inicializando microserviço de autenticação segura</span>
-app = Flask(__name__)
+                <tr><td class="row-num">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-num">8</td><td style="color:#8a8886; font-style:italic;">Notas de Auditoria:</td><td colspan="6" style="color:#8a8886; font-size:10px;">Os valores acima são indexados pela volatilidade do mercado secundário de commodities industriais Q3.</td></tr>
+                <tr><td class="row-num">9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-num">10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-num">11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
 
-@app.route(<span class="str">"/api/v1/auth/verify"</span>, methods=[<span class="str">"POST"</span>])
-<span class="kw">def</span> <span class="kw">verify_token</span>():
-    token = request.headers.get(<span class="str">"Authorization"</span>)
-    <span class="kw">if not</span> token:
-        <span class="kw">return</span> jsonify({<span class="str">"status"</span>: <span class="str">"error"</span>, <span class="str">"message"</span>: <span class="str">"Missing token"</span>}), <span class="str">401</span>
-    
-    <span class="com"># Validando criptografia simétrica SHA-256</span>
-    session_valid = database.check_active_session(token)
-    <span class="kw">if</span> session_valid:
-        <span class="kw">return</span> jsonify({<span class="str">"status"</span>: <span class="str">"verified"</span>, <span class="str">"role"</span>: <span class="str">"admin"</span>}), <span class="str">200</span>
-    <span class="kw">return</span> jsonify({<span class="str">"status"</span>: <span class="str">"denied"</span>}), <span class="str">403</span>
-        </div>
+    <div class="status-bar">
+        <div>SOMA=100000 | CONT.NÚM=15 | MÉDIA=6666.67</div>
+        <div>Pronto | 100% Zoom</div>
+    </div>
 
-        <div class="terminal-area">
-            <div class="terminal-header">
-                <span class="terminal-tab">TERMINAL</span>
-                <span style="opacity: 0.5;">PROBLEMS</span>
-                <span style="opacity: 0.5;">OUTPUT</span>
-                <span style="opacity: 0.5;">DEBUG CONSOLE</span>
+    <div id="panic-screen">
+        <h2 style="color:#107c41; margin-top:0;">Relatório de Consolidação Macroeconômica Intersetorial</h2>
+        <p style="color:#605e5c; font-size: 12px;">Gerado automaticamente pelo sistema ERP Corporativo em 16/07/2026</p>
+        <hr style="border: 0; border-top: 1px solid #d2d0ce; margin: 20px 0;">
+        <div style="display: flex; gap: 40px;">
+            <div style="flex: 1;">
+                <h3 style="font-size: 14px;">1. Sumário de Risco e Compliance</h3>
+                <p style="font-size:12px; line-height: 1.6; color:#323130;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <p style="font-size:12px; line-height: 1.6; color:#323130;">
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
             </div>
-            <div class="terminal-body" id="terminal-output">
-                <div>Microsoft Windows [versão 10.0.19045]</div>
-                <div>(c) Microsoft Corporation. Todos os direitos reservados.</div>
-                <br>
-                <div style="color: #e5c07b;">[DICA]: Digite 'ajuda' para ver comandos de rede disponíveis ou 'iniciar' para escanear portas.</div>
-                <div style="color: #e5c07b;">[BOSS KEY]: Aperte ESC ou ESPAÇO a qualquer momento para camuflar a tela!</div>
-                <br>
-            </div>
-            <div class="terminal-input-line">
-                <span class="prompt">C:\Users\Developer\projects\api-core></span>
-                <input type="text" id="terminal-input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+            <div style="flex: 1; border: 1px dashed #a80000; padding: 15px; border-radius: 4px;">
+                <h4 style="margin-top: 0; color: #a80000;">⚠️ ATENÇÃO: SISTEMA EM MODO DE AUDITORIA RETROATIVA</h4>
+                <p style="font-size: 11px; color:#505050;">Pressione a tecla <strong>ESC</strong> novamente para restabelecer a conexão com o banco de dados principal de produção.</p>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    const output = document.getElementById('terminal-output');
-    const input = document.getElementById('terminal-input');
+    <script>
+        // Lógica do Jogo
+        let cash = 10000;
+        let turn = 1;
+        const maxTurns = 30;
+        const target = 100000;
 
-    // Estado do Jogo (Rogue-Lite de Hacker)
-    let gameActive = false;
-    let targetIP = "192.168.12.84";
-    let systemSecurity = 100;
-    let userCpu = 8;
-    let playerInventory = ["proxy_v1", "brute_force.sh"];
-    let isBossMode = false;
+        let products = [
+            { name: "PROD_KAPPA", basePrice: 150, currentPrice: 150, qty: 0, volatility: 0.15 },
+            { name: "PROD_SIGMA", basePrice: 320, currentPrice: 320, qty: 0, volatility: 0.25 },
+            { name: "PROD_OMEGA", basePrice: 850, currentPrice: 850, qty: 0, volatility: 0.40 },
+            { name: "PROD_DELTA", basePrice: 45, currentPrice: 45, qty: 0, volatility: 0.10 }
+        ];
 
-    // Histórico de Logs para simulação de compilação (Boss Key)
-    const bossLogs = [
-        `[${new Date().toLocaleTimeString()}] INFO: Starting development server...`,
-        "Compiled successfully!",
-        "You can now view api-core in the browser.",
-        "  Local:            http://localhost:3000",
-        "  On Your Network:  http://192.168.1.15:3000",
-        "Note that the development build is not optimized.",
-        "To create a production build, use npm run build.",
-        "assets by status 1.48 MiB [cached] 117 assets",
-        "cached modules 1.22 MiB [cached] 529 modules",
-        "webpack compiled successfully in 1432 ms"
-    ];
+        function updateUI() {
+            document.getElementById('cash').innerText = `$ ${cash.toFixed(2)}`;
+            document.getElementById('turn').innerText = `${turn} / ${maxTurns}`;
+            
+            products.forEach((p, index) => {
+                document.getElementById(`price-${index}`).innerText = `$ ${p.currentPrice.toFixed(2)}`;
+                document.getElementById(`qty-${index}`).innerText = p.qty;
+                
+                let changePercent = ((p.currentPrice - p.basePrice) / p.basePrice) * 100;
+                let trendCell = document.getElementById(`trend-${index}`);
+                trendCell.innerText = `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(1)}%`;
+                trendCell.className = changePercent >= 0 ? 'positive' : 'negative';
 
-    function printToTerminal(text, color = '#d4d4d4') {
-        const div = document.createElement('div');
-        div.style.color = color;
-        div.innerHTML = text;
-        output.appendChild(div);
-        output.scrollTop = output.scrollHeight;
-    }
-
-    input.addEventListener('keydown', function(e) {
-        // Tecla de Pânico (ESC ou ESPAÇO se não estiver no meio da digitação, mas preferencialmente ESC)
-        if (e.key === 'Escape') {
-            triggerBossMode();
-            return;
+                // Status text updates based on market volatility
+                let statusCell = document.getElementById(`status-${index}`);
+                if (changePercent > 15) {
+                    statusCell.innerText = "Superfaturado";
+                    statusCell.style.color = "#a80000";
+                } else if (changePercent < -15) {
+                    statusCell.innerText = "Subvalorizado";
+                    statusCell.style.color = "#107c41";
+                } else {
+                    statusCell.innerText = "Estável";
+                    statusCell.style.color = "#505050";
+                }
+            });
         }
 
-        if (e.key === 'Enter') {
-            const command = input.value.trim().toLowerCase();
-            input.value = '';
+        function buy(index) {
+            let p = products[index];
+            if (cash >= p.currentPrice) {
+                cash -= p.currentPrice;
+                p.qty++;
+                nextTurn();
+            }
+        }
 
-            if (isBossMode) {
-                // Sair do modo boss
-                isBossMode = false;
-                output.innerHTML = "<div>Microsoft Windows [versão 10.0.19045]<br>Sessão restaurada...</div><br>";
-                printToTerminal("[SISTEMA] Conexão restabelecida de forma segura.", "#4af626");
+        function sell(index) {
+            let p = products[index];
+            if (p.qty > 0) {
+                cash += p.currentPrice;
+                p.qty--;
+                nextTurn();
+            }
+        }
+
+        function nextTurn() {
+            if (turn >= maxTurns) {
+                endGame();
                 return;
             }
+            turn++;
 
-            if (command === '') return;
+            // Simula flutuação de mercado
+            products.forEach(p => {
+                let change = (Math.random() * 2 - 1) * p.volatility;
+                p.currentPrice = Math.max(5, p.currentPrice * (1 + change));
+            });
 
-            printToTerminal(`<span class="prompt">C:\\Users\\Developer\\projects\\api-core&gt;</span> ${command}`, '#fff');
-            processCommand(command);
+            updateUI();
         }
-    });
 
-    function triggerBossMode() {
-        isBossMode = true;
-        output.innerHTML = '';
-        bossLogs.forEach(log => {
-            const isError = log.includes('ERR') || log.includes('fail');
-            printToTerminal(log, isError ? '#f44747' : '#85e89d');
+        function endGame() {
+            let totalValue = cash;
+            products.forEach(p => {
+                totalValue += p.qty * p.currentPrice;
+            });
+
+            if (totalValue >= target) {
+                alert(`[RELATÓRIO DE SUCESSO]\n\nMeta trimestral atingida!\nValor Consolidado: $${totalValue.toFixed(2)}\nExcelente trabalho na auditoria.`);
+            } else {
+                alert(`[ALERTA DE DESEMPENHO]\n\nFim do trimestre.\nValor Consolidado: $${totalValue.toFixed(2)}\nMeta de $100.000,00 não atingida. Tente reajustar seus ativos.`);
+            }
+            // Reset
+            cash = 10000;
+            turn = 1;
+            products.forEach(p => { p.qty = 0; p.currentPrice = p.basePrice; });
+            updateUI();
+        }
+
+        function updateFormula(cell, prodName) {
+            document.getElementById('cell-focus').innerText = cell;
+            document.getElementById('formula-text').innerText = `=VLOOKUP("${prodName}", DATA_RANGE, 3, FALSE) * GLOBAL_INDEX`;
+        }
+
+        // BOSS KEY / PANIC MODE
+        let isPanicked = false;
+        function togglePanic() {
+            const panicScreen = document.getElementById('panic-screen');
+            if (!isPanicked) {
+                panicScreen.style.display = 'block';
+                isPanicked = true;
+            } else {
+                panicScreen.style.display = 'none';
+                isPanicked = false;
+            }
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                togglePanic();
+            }
         });
-        input.value = '';
-    }
 
-    function processCommand(cmd) {
-        const args = cmd.split(' ');
-        const primaryCmd = args[0];
-
-        switch(primaryCmd) {
-            case 'ajuda':
-                printToTerminal("Comandos disponíveis:");
-                printToTerminal("  iniciar        - Inicia varredura na rede externa");
-                printToTerminal("  status         - Mostra integridade da sua CPU de ataque");
-                printToTerminal("  inventario     - Lista scripts carregados");
-                printToTerminal("  executar [app] - Executa um script do inventário");
-                printToTerminal("  cls            - Limpa a tela");
-                break;
-
-            case 'cls':
-                output.innerHTML = '';
-                break;
-
-            case 'iniciar':
-                gameActive = true;
-                systemSecurity = 100;
-                printToTerminal(`[SCANNER] Alvo encontrado em: ${targetIP}`, '#569cd6');
-                printToTerminal(`[DEFESA] Defesas do Alvo: ${systemSecurity}% firewall`, '#f44747');
-                printToTerminal("Dica: Use 'executar brute_force.sh' para começar a quebrar a criptografia.", "#e5c07b");
-                break;
-
-            case 'status':
-                printToTerminal(`-- STATUS DA MÁQUINA --`);
-                printToTerminal(`CPU Alocada: Core-i7 virtualizado (${userCpu} núcleos ativos)`);
-                printToTerminal(`Alvo Atual: ${gameActive ? targetIP : "Nenhum"}`);
-                printToTerminal(`Defesa do Alvo: ${gameActive ? systemSecurity + '%' : "N/A"}`);
-                break;
-
-            case 'inventario':
-                printToTerminal("Ferramentas de Desenvolvimento Carregadas:");
-                playerInventory.forEach(item => {
-                    printToTerminal(` - ${item}`, '#ce9178');
-                });
-                break;
-
-            case 'executar':
-                if (!gameActive) {
-                    printToTerminal("Erro: Você precisa iniciar o scanner primeiro ('iniciar').", "#f44747");
-                    break;
-                }
-                const script = args[1];
-                if (!script) {
-                    printToTerminal("Use: executar [nome_do_script]");
-                } else if (script === 'brute_force.sh') {
-                    let dano = Math.floor(Math.random() * 25) + 15;
-                    systemSecurity -= dano;
-                    printToTerminal(`[RUNNING] brute_force.sh... Executando dicionário de senhas...`, '#6a9955');
-                    printToTerminal(`Sucesso! Quebrou ${dano}% das barreiras. Defesa restante: ${Math.max(0, systemSecurity)}%`, '#4af626');
-
-                    if (systemSecurity <= 0) {
-                        printToTerminal("--------------------------------------------------", "#4af626");
-                        printToTerminal("INVASÃO CONCLUÍDA! Banco de dados descriptografado.", "#4af626");
-                        printToTerminal("Você coletou +500 créditos corporativos falsos.", "#4af626");
-                        printToTerminal("--------------------------------------------------", "#4af626");
-                        gameActive = false;
-                        // Evolui o jogo
-                        userCpu += 4;
-                        playerInventory.push("bypass_db.py");
-                    }
-                } else if (playerInventory.includes(script)) {
-                    printToTerminal(`Executando ${script}... Bypass temporário ativado.`, '#9cdcfe');
-                } else {
-                    printToTerminal(`Script "${script}" não encontrado. Verifique seu 'inventario'.`, "#f44747");
-                }
-                break;
-
-            default:
-                // Se digitar qualquer comando genérico, simula o terminal do Windows para parecer real
-                printToTerminal(`'${cmd}' não é reconhecido como um comando interno
-ou externo, um programa operável ou um arquivo em lotes.`, '#f44747');
-        }
-    }
-</script>
+        // Init
+        updateUI();
+    </script>
 </body>
 </html>
