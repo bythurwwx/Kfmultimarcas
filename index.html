@@ -3,131 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatorio_Consolidado_Q3_2026.xlsx - Excel</title>
+    <title>Painel de Controle de Processos - Água Sanitária Dragão v4.2</title>
     <style>
         body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f3f2f1;
-            color: #323130;
-            font-size: 11pt;
+            font-family: "Segoe UI", -apple-system, sans-serif;
+            background-color: #1e1e24;
+            color: #e0e0e0;
+            font-size: 11px;
             user-select: none;
             overflow: hidden;
         }
-        /* Excel Top Bar */
-        .excel-header {
-            background-color: #107c41;
-            color: white;
+
+        /* Top Bar - Corporativa e Industrial */
+        .industrial-header {
+            background-color: #0d233a; /* Azul escuro corporativo */
+            color: #ffffff;
             padding: 8px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
+            border-bottom: 3px solid #d9381e; /* Vermelho Dragão */
+            font-weight: bold;
             font-size: 12px;
         }
-        .excel-menu {
-            background-color: #f3f2f1;
-            border-bottom: 1px solid #d2d0ce;
-            padding: 6px 16px;
-            display: flex;
-            gap: 15px;
-            font-size: 11px;
-            color: #505050;
-        }
-        .excel-menu span { cursor: pointer; }
-        .excel-menu span:hover { color: #107c41; font-weight: bold; }
-        
-        /* Formula Bar */
-        .formula-bar {
+        .header-logo {
             display: flex;
             align-items: center;
-            background: white;
-            border-bottom: 1px solid #d2d0ce;
-            padding: 4px 8px;
-            font-family: Consolas, monospace;
-            font-size: 12px;
+            gap: 8px;
         }
-        .formula-bar .cell-address {
-            width: 50px;
-            border-right: 1px solid #d2d0ce;
-            padding-right: 8px;
-            font-weight: bold;
-            color: #505050;
-        }
-        .formula-bar .formula-input {
-            padding-left: 8px;
-            color: #323130;
-            flex-grow: 1;
+        .dragon-badge {
+            background-color: #d9381e;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            letter-spacing: 1px;
         }
 
-        /* Spreadsheet Grid */
-        .grid-container {
-            width: 100%;
-            overflow-x: auto;
-            background: white;
+        /* Sub-Header de Status do Sistema */
+        .system-status-bar {
+            background-color: #2d3748;
+            padding: 6px 16px;
+            display: flex;
+            gap: 20px;
+            font-family: monospace;
+            border-bottom: 1px solid #4a5568;
+            color: #a0aec0;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background: white;
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 12px;
+            padding: 12px;
+            box-sizing: border-box;
+            height: calc(100vh - 75px);
         }
-        th, td {
-            border: 1px solid #e0e0e0;
-            padding: 6px 10px;
-            text-align: left;
-            height: 20px;
+
+        /* Card Industrial */
+        .panel-card {
+            background-color: #2d3238;
+            border: 1px solid #444c56;
+            border-radius: 4px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
         }
-        th {
-            background-color: #f3f2f1;
-            color: #323130;
-            font-weight: normal;
+        .card-title {
             font-size: 11px;
-            text-align: center;
-            width: 80px;
-        }
-        .row-num {
-            background-color: #f3f2f1;
-            text-align: center;
-            font-size: 11px;
-            width: 40px;
-            color: #323130;
-        }
-        
-        /* Game elements styled as pure corporate data */
-        .btn-action {
-            background: #f3f2f1;
-            border: 1px solid #8a8886;
-            color: #323130;
-            padding: 2px 8px;
-            font-size: 10px;
-            cursor: pointer;
-            border-radius: 2px;
-            font-family: inherit;
-        }
-        .btn-action:hover {
-            background: #edebe9;
-            border-color: #107c41;
-        }
-        .positive { color: #107c41; font-weight: 600; }
-        .negative { color: #a80000; font-weight: 600; }
-        .highlight { background-color: #f3f9f5; }
-        
-        /* Status Bar */
-        .status-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #107c41;
-            color: white;
-            padding: 4px 16px;
-            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #3182ce;
+            border-bottom: 1px solid #444c56;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
-            box-sizing: border-box;
         }
 
-        /* Panic Mode Overlay */
+        /* Elementos de Controle do Jogo */
+        .gauge-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        .gauge-box {
+            text-align: center;
+            background: #22252a;
+            padding: 8px;
+            border-radius: 4px;
+            width: 30%;
+            border: 1px solid #3e444d;
+        }
+        .gauge-value {
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #48bb78;
+            margin-top: 4px;
+        }
+
+        /* Grid de Produção */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: monospace;
+        }
+        th, td {
+            text-align: left;
+            padding: 6px;
+            border-bottom: 1px solid #3e444d;
+        }
+        th {
+            color: #a0aec0;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Botões Disfarçados (Parecem botões de CLICAR do sistema ERP) */
+        .btn-system {
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .btn-system:hover {
+            background-color: #2b6cb0;
+        }
+        .btn-danger {
+            background-color: #e53e3e;
+        }
+        .btn-danger:hover {
+            background-color: #c53030;
+        }
+
+        /* Panic Screen (Excel chato de Cloro) */
         #panic-screen {
             display: none;
             position: fixed;
@@ -135,210 +155,279 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: white;
+            background: #ffffff;
+            color: #333333;
             z-index: 9999;
-            padding: 40px;
+            padding: 20px;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: Calibri, Arial, sans-serif;
         }
+        .excel-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .excel-table th, .excel-table td {
+            border: 1px solid #d2d0ce;
+            padding: 4px 8px;
+            font-size: 11px;
+            text-align: left;
+        }
+        .excel-table th { background-color: #f3f2f1; font-weight: normal; }
     </style>
 </head>
 <body>
 
-    <div class="excel-header">
-        <div>📁 Relatorio_Consolidado_Q3_2026.xlsx - Salvo no SharePoint</div>
-        <div style="font-size: 11px;">🔒 Conexão Segura SSL</div>
-    </div>
-    <div class="excel-menu">
-        <span>Página Inicial</span>
-        <span>Inserir</span>
-        <span>Desenhar</span>
-        <span>Layout da Página</span>
-        <span>Fórmulas</span>
-        <span>Dados</span>
-        <span>Revisão</span>
-        <span>Exibir</span>
-        <span style="color: #a80000; font-weight: bold;" onclick="togglePanic()">⚠️ MODO PANICO (ESC)</span>
+    <!-- CABEÇALHO INDUSTRIAL DRAGÃO -->
+    <div class="industrial-header">
+        <div class="header-logo">
+            <span class="dragon-badge">DRAGÃO</span>
+            <span>SADP - Sistema de Automação e Distribuição de Produção v4.27</span>
+        </div>
+        <div style="color: #cbd5e0; font-size: 10px;">ID do Terminal: BR-CAS-TX01 | Conectado via Intranet</div>
     </div>
 
-    <div class="formula-bar">
-        <div class="cell-address" id="cell-focus">B4</div>
-        <div class="formula-input" id="formula-text">=SUM(B2:D15) * VAR_MARKET_INDEX</div>
+    <!-- BARRA DE STATUS DO SISTEMA -->
+    <div class="system-status-bar">
+        <span>SISTEMA: <strong style="color: #48bb78;">ONLINE</strong></span>
+        <span>|</span>
+        <span>PLTA: CASCAVEL-CE</span>
+        <span>|</span>
+        <span>CONEXÃO COM TANQUES: ATIVA</span>
+        <span style="margin-left: auto; color: #f56565; cursor: pointer;" onclick="togglePanic()">🚨 REVISAR AUDITORIA (ESC)</span>
     </div>
 
-    <div class="grid-container">
-        <table>
+    <!-- MAIN DASHBOARD -->
+    <div class="dashboard">
+        
+        <!-- CARD 1: REATORES DE MISTURA (Controle de Níveis) -->
+        <div class="panel-card">
+            <div class="card-title">
+                <span>Controle de Reatores - Dosagem Química</span>
+                <span style="color: #a0aec0;">Sensor de Vazão: OK</span>
+            </div>
+            <p style="margin: 0 0 10px 0; color: #a0aec0;">Equilibre a dosagem para produzir água sanitária padrão (pH entre 11.5 e 12.5).</p>
+            
+            <div class="gauge-container">
+                <div class="gauge-box">
+                    <div style="font-size: 10px; color: #cbd5e0;">Hipoclorito de Sódio</div>
+                    <div class="gauge-value" id="cloro-val">12.0%</div>
+                </div>
+                <div class="gauge-box">
+                    <div style="font-size: 10px; color: #cbd5e0;">Água Deionizada</div>
+                    <div class="gauge-value" id="agua-val">88.0%</div>
+                </div>
+                <div class="gauge-box">
+                    <div style="font-size: 10px; color: #cbd5e0;">pH Medido</div>
+                    <div class="gauge-value" id="ph-val" style="color: #48bb78;">12.0</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: auto; justify-content: center;">
+                <button class="btn-system" onclick="adjustChemistry(0.2, -0.2)">+ Cloro / - Água</button>
+                <button class="btn-system" onclick="adjustChemistry(-0.2, 0.2)">- Cloro / + Água</button>
+                <button class="btn-system btn-danger" onclick="produceBatch()">Homogeneizar e Envasar Lote</button>
+            </div>
+        </div>
+
+        <!-- CARD 2: PAINEL DE METAS E VENDAS -->
+        <div class="panel-card">
+            <div class="card-title">
+                <span>Relatório Trimestral de Expedição</span>
+                <span style="color: #f6e05e;">Meta: Q3/2026</span>
+            </div>
+            <table style="margin-top: 10px;">
+                <tr>
+                    <td>Lotes Produzidos (Padrão Dragão):</td>
+                    <td id="lotes-val" style="font-weight: bold; color: #3182ce;">0 / 15</td>
+                </tr>
+                <tr>
+                    <td>Faturamento Expedição (Vendas):</td>
+                    <td id="money-val" style="font-weight: bold; color: #48bb78;">R$ 1.500,00</td>
+                </tr>
+                <tr>
+                    <td>Custo Logístico por Turno:</td>
+                    <td style="color: #f56565;">R$ 150,00</td>
+                </tr>
+                <tr>
+                    <td>Turno de Operação:</td>
+                    <td id="turn-val" style="font-weight: bold;">1 / 20</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CARD 3: LOGÍSTICA DE DISTRIBUIÇÃO (Mercado) -->
+        <div class="panel-card" style="grid-column: span 2;">
+            <div class="card-title">
+                <span>Demanda Regional - Distribuidores Nordeste</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Distribuidor / Região</th>
+                        <th>Demanda de pH Exigida</th>
+                        <th>Valor Oferecido (por Lote)</th>
+                        <th>Status da Negociação</th>
+                        <th>Ação de Embarque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Supermercados Fortaleza</td>
+                        <td>pH 11.8 - 12.2 (Estrito)</td>
+                        <td style="color: #48bb78; font-weight: bold;">R$ 1.800,00</td>
+                        <td id="dem-0-status">Aguardando Lote</td>
+                        <td><button class="btn-system" onclick="shipBatch(0)">Despachar Caminhão</button></td>
+                    </tr>
+                    <tr>
+                        <td>Distribuidora Cariri</td>
+                        <td>pH 11.0 - 13.0 (Flexível)</td>
+                        <td style="color: #48bb78; font-weight: bold;">R$ 1.100,00</td>
+                        <td id="dem-1-status">Aguardando Lote</td>
+                        <td><button class="btn-system" onclick="shipBatch(1)">Despachar Caminhão</button></td>
+                    </tr>
+                    <tr>
+                        <td>Atacadão Sobral</td>
+                        <td>pH 12.2 - 12.6 (Forte)</td>
+                        <td style="color: #48bb78; font-weight: bold;">R$ 1.500,00</td>
+                        <td id="dem-2-status">Aguardando Lote</td>
+                        <td><button class="btn-system" onclick="shipBatch(2)">Despachar Caminhão</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- TELA DE PÂNICO (EXCEL DE CLORO INTEGRALMENTE CHATO E BRANCO) -->
+    <div id="panic-screen">
+        <div style="font-size: 14px; font-weight: bold; color: #107c41; margin-bottom: 10px;">📊 Relatório_Inspeção_Vazao_Cloro_Q3.xlsx - Microsoft Excel</div>
+        <table class="excel-table">
             <thead>
                 <tr>
-                    <th style="width: 30px;"></th>
-                    <th>A (Ativo)</th>
-                    <th>B (Preço Médio)</th>
-                    <th>C (Preço Atual)</th>
-                    <th>D (Variação)</th>
-                    <th>E (Qtd. Carteira)</th>
-                    <th>F (Ações Comerciais)</th>
-                    <th>G (Status de Mercado)</th>
+                    <th>ID_LOTE</th>
+                    <th>DATA_COLETA</th>
+                    <th>CONCENTRAÇÃO_CLORO_ATIVO (%)</th>
+                    <th>PH_MEDIDO</th>
+                    <th>STATUS_COMPLIANCE</th>
+                    <th>AUDITOR_RESPONSAVEL</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="highlight">
-                    <td class="row-num">1</td>
-                    <td style="font-weight: bold;">SALDO DISPONÍVEL</td>
-                    <td id="cash" style="font-weight: bold;" class="positive">$10,000.00</td>
-                    <td style="color: #8a8886;">Meta Trimestre:</td>
-                    <td id="target" style="font-weight: bold;">$100,000.00</td>
-                    <td style="color: #8a8886;">Rodada / Turno:</td>
-                    <td id="turn" style="font-weight: bold;">1 / 30</td>
-                    <td><span class="positive">DENTRO DA META</span></td>
+                <tr>
+                    <td>LT-2026-098</td>
+                    <td>16/07/2026</td>
+                    <td>2.25%</td>
+                    <td>12.04</td>
+                    <td style="color:#107c41; font-weight: bold;">APROVADO</td>
+                    <td>Eng. Químico Reg. 4452</td>
                 </tr>
-                <tr style="height: 10px;"><td class="row-num" style="height: 10px;">2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                
-                <tr onclick="updateFormula('A3', 'PROD_KAPPA')">
-                    <td class="row-num">3</td>
-                    <td>PROD_KAPPA (Aço)</td>
-                    <td>$ 150.00</td>
-                    <td id="price-0">$ 150.00</td>
-                    <td id="trend-0" class="positive">+0.0%</td>
-                    <td id="qty-0">0</td>
-                    <td>
-                        <button class="btn-action" onclick="buy(0)">COMPRAR</button>
-                        <button class="btn-action" onclick="sell(0)">VENDER</button>
-                    </td>
-                    <td id="status-0" style="color:#505050;">Estável</td>
+                <tr>
+                    <td>LT-2026-099</td>
+                    <td>16/07/2026</td>
+                    <td>2.10%</td>
+                    <td>11.95</td>
+                    <td style="color:#107c41; font-weight: bold;">APROVADO</td>
+                    <td>Eng. Químico Reg. 4452</td>
                 </tr>
-                <tr onclick="updateFormula('A4', 'PROD_SIGMA')">
-                    <td class="row-num">4</td>
-                    <td>PROD_SIGMA (Cobre)</td>
-                    <td>$ 320.00</td>
-                    <td id="price-1">$ 320.00</td>
-                    <td id="trend-1" class="positive">+0.0%</td>
-                    <td id="qty-1">0</td>
-                    <td>
-                        <button class="btn-action" onclick="buy(1)">COMPRAR</button>
-                        <button class="btn-action" onclick="sell(1)">VENDER</button>
-                    </td>
-                    <td id="status-1" style="color:#505050;">Estável</td>
+                <tr>
+                    <td>LT-2026-100</td>
+                    <td>16/07/2026</td>
+                    <td>1.80%</td>
+                    <td>10.80</td>
+                    <td style="color:#a80000; font-weight: bold;">REJEITADO - REPROCESSAR</td>
+                    <td>Eng. Químico Reg. 4452</td>
                 </tr>
-                <tr onclick="updateFormula('A5', 'PROD_OMEGA')">
-                    <td class="row-num">5</td>
-                    <td>PROD_OMEGA (Lítio)</td>
-                    <td>$ 850.00</td>
-                    <td id="price-2">$ 850.00</td>
-                    <td id="trend-2" class="positive">+0.0%</td>
-                    <td id="qty-2">0</td>
-                    <td>
-                        <button class="btn-action" onclick="buy(2)">COMPRAR</button>
-                        <button class="btn-action" onclick="sell(2)">VENDER</button>
-                    </td>
-                    <td id="status-2" style="color:#505050;">Estável</td>
-                </tr>
-                <tr onclick="updateFormula('A6', 'PROD_DELTA')">
-                    <td class="row-num">6</td>
-                    <td>PROD_DELTA (Silício)</td>
-                    <td>$ 45.00</td>
-                    <td id="price-3">$ 45.00</td>
-                    <td id="trend-3" class="positive">+0.0%</td>
-                    <td id="qty-3">0</td>
-                    <td>
-                        <button class="btn-action" onclick="buy(3)">COMPRAR</button>
-                        <button class="btn-action" onclick="sell(3)">VENDER</button>
-                    </td>
-                    <td id="status-3" style="color:#505050;">Estável</td>
-                </tr>
-
-                <tr><td class="row-num">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="row-num">8</td><td style="color:#8a8886; font-style:italic;">Notas de Auditoria:</td><td colspan="6" style="color:#8a8886; font-size:10px;">Os valores acima são indexados pela volatilidade do mercado secundário de commodities industriais Q3.</td></tr>
-                <tr><td class="row-num">9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="row-num">10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="row-num">11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
             </tbody>
         </table>
-    </div>
-
-    <div class="status-bar">
-        <div>SOMA=100000 | CONT.NÚM=15 | MÉDIA=6666.67</div>
-        <div>Pronto | 100% Zoom</div>
-    </div>
-
-    <div id="panic-screen">
-        <h2 style="color:#107c41; margin-top:0;">Relatório de Consolidação Macroeconômica Intersetorial</h2>
-        <p style="color:#605e5c; font-size: 12px;">Gerado automaticamente pelo sistema ERP Corporativo em 16/07/2026</p>
-        <hr style="border: 0; border-top: 1px solid #d2d0ce; margin: 20px 0;">
-        <div style="display: flex; gap: 40px;">
-            <div style="flex: 1;">
-                <h3 style="font-size: 14px;">1. Sumário de Risco e Compliance</h3>
-                <p style="font-size:12px; line-height: 1.6; color:#323130;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
-                <p style="font-size:12px; line-height: 1.6; color:#323130;">
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-            <div style="flex: 1; border: 1px dashed #a80000; padding: 15px; border-radius: 4px;">
-                <h4 style="margin-top: 0; color: #a80000;">⚠️ ATENÇÃO: SISTEMA EM MODO DE AUDITORIA RETROATIVA</h4>
-                <p style="font-size: 11px; color:#505050;">Pressione a tecla <strong>ESC</strong> novamente para restabelecer a conexão com o banco de dados principal de produção.</p>
-            </div>
+        <div style="margin-top: 15px; font-size: 11px; color: #666;">
+            <strong>Nota de Auditoria:</strong> Os dados de pureza microbiológica estão em conformidade com as diretrizes da ANVISA para águas sanitárias industriais. Pressione <strong>ESC</strong> para recalcular as células do modelo de previsão macroeconômica.
         </div>
     </div>
 
     <script>
-        // Lógica do Jogo
-        let cash = 10000;
+        // LÓGICA DO JOGO
+        let cloro = 12.0;
+        let agua = 88.0;
+        let ph = 12.0;
+        
+        let inventoryBatch = null; // Guarda o pH do lote produzido
+        let money = 1500;
         let turn = 1;
-        const maxTurns = 30;
-        const target = 100000;
-
-        let products = [
-            { name: "PROD_KAPPA", basePrice: 150, currentPrice: 150, qty: 0, volatility: 0.15 },
-            { name: "PROD_SIGMA", basePrice: 320, currentPrice: 320, qty: 0, volatility: 0.25 },
-            { name: "PROD_OMEGA", basePrice: 850, currentPrice: 850, qty: 0, volatility: 0.40 },
-            { name: "PROD_DELTA", basePrice: 45, currentPrice: 45, qty: 0, volatility: 0.10 }
-        ];
+        const maxTurns = 20;
+        let lotesProduzidos = 0;
 
         function updateUI() {
-            document.getElementById('cash').innerText = `$ ${cash.toFixed(2)}`;
-            document.getElementById('turn').innerText = `${turn} / ${maxTurns}`;
+            document.getElementById('cloro-val').innerText = cloro.toFixed(1) + "%";
+            document.getElementById('agua-val').innerText = agua.toFixed(1) + "%";
+            document.getElementById('ph-val').innerText = ph.toFixed(2);
+            document.getElementById('money-val').innerText = "R$ " + money.toFixed(2);
+            document.getElementById('turn-val').innerText = turn + " / " + maxTurns;
+            document.getElementById('lotes-val').innerText = lotesProduzidos + " / 15";
+
+            const phCell = document.getElementById('ph-val');
+            if (ph >= 11.5 && ph <= 12.5) {
+                phCell.style.color = "#48bb78"; // Verde (Mistura ideal para a Dragão)
+            } else {
+                phCell.style.color = "#e53e3e"; // Vermelho (Fora do padrão)
+            }
+        }
+
+        function adjustChemistry(cloroDiff, aguaDiff) {
+            cloro = Math.max(5, Math.min(25, cloro + cloroDiff));
+            agua = Math.max(75, Math.min(95, agua + aguaDiff));
             
-            products.forEach((p, index) => {
-                document.getElementById(`price-${index}`).innerText = `$ ${p.currentPrice.toFixed(2)}`;
-                document.getElementById(`qty-${index}`).innerText = p.qty;
-                
-                let changePercent = ((p.currentPrice - p.basePrice) / p.basePrice) * 100;
-                let trendCell = document.getElementById(`trend-${index}`);
-                trendCell.innerText = `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(1)}%`;
-                trendCell.className = changePercent >= 0 ? 'positive' : 'negative';
+            // Fórmula do pH simulada
+            ph = 7 + (cloro * 0.41) + (Math.random() * 0.1 - 0.05);
+            updateUI();
+        }
 
-                // Status text updates based on market volatility
-                let statusCell = document.getElementById(`status-${index}`);
-                if (changePercent > 15) {
-                    statusCell.innerText = "Superfaturado";
-                    statusCell.style.color = "#a80000";
-                } else if (changePercent < -15) {
-                    statusCell.innerText = "Subvalorizado";
-                    statusCell.style.color = "#107c41";
-                } else {
-                    statusCell.innerText = "Estável";
-                    statusCell.style.color = "#505050";
+        function produceBatch() {
+            inventoryBatch = ph;
+            alert(`[PRODUÇÃO] Lote de Água Sanitária Dragão envasado com sucesso!\nPH do Lote: ${ph.toFixed(2)}\n\nAgora despache o lote para um dos distribuidores abaixo para receber a verba!`);
+            
+            document.getElementById('dem-0-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
+            document.getElementById('dem-1-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
+            document.getElementById('dem-2-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
+        }
+
+        function shipBatch(distributorIndex) {
+            if (inventoryBatch === null) {
+                alert("[ERRO] Nenhum lote envasado na esteira! Misture e produza um lote antes de despachar.");
+                return;
+            }
+
+            let valid = false;
+            let pay = 0;
+
+            if (distributorIndex === 0) { // Fortaleza
+                if (inventoryBatch >= 11.8 && inventoryBatch <= 12.2) {
+                    valid = true; pay = 1800;
                 }
-            });
-        }
-
-        function buy(index) {
-            let p = products[index];
-            if (cash >= p.currentPrice) {
-                cash -= p.currentPrice;
-                p.qty++;
-                nextTurn();
+            } else if (distributorIndex === 1) { // Cariri
+                if (inventoryBatch >= 11.0 && inventoryBatch <= 13.0) {
+                    valid = true; pay = 1100;
+                }
+            } else if (distributorIndex === 2) { // Sobral
+                if (inventoryBatch >= 12.2 && inventoryBatch <= 12.6) {
+                    valid = true; pay = 1500;
+                }
             }
-        }
 
-        function sell(index) {
-            let p = products[index];
-            if (p.qty > 0) {
-                cash += p.currentPrice;
-                p.qty--;
-                nextTurn();
+            if (valid) {
+                money += pay;
+                lotesProduzidos++;
+                alert(`[LOGÍSTICA] Entrega realizada com sucesso!\nO distribuidor aprovou a Água Sanitária Dragão.\nVocê faturou R$ ${pay.toFixed(2)}.`);
+            } else {
+                money -= 300; // Multa por devolução de lote com pH incorreto
+                alert(`[REJEITADO] O controle de qualidade do comprador barrou o lote!\nO pH de ${inventoryBatch.toFixed(2)} não atendeu aos parâmetros exigidos.\nMulta de transporte e logística aplicada: - R$ 300,00`);
             }
+
+            inventoryBatch = null; // Reseta lote
+            document.getElementById('dem-0-status').innerText = "Aguardando Lote";
+            document.getElementById('dem-1-status').innerText = "Aguardando Lote";
+            document.getElementById('dem-2-status').innerText = "Aguardando Lote";
+
+            nextTurn();
         }
 
         function nextTurn() {
@@ -347,40 +436,23 @@
                 return;
             }
             turn++;
-
-            // Simula flutuação de mercado
-            products.forEach(p => {
-                let change = (Math.random() * 2 - 1) * p.volatility;
-                p.currentPrice = Math.max(5, p.currentPrice * (1 + change));
-            });
-
+            money -= 150; // Custo fixo de operação por turno
             updateUI();
         }
 
         function endGame() {
-            let totalValue = cash;
-            products.forEach(p => {
-                totalValue += p.qty * p.currentPrice;
-            });
-
-            if (totalValue >= target) {
-                alert(`[RELATÓRIO DE SUCESSO]\n\nMeta trimestral atingida!\nValor Consolidado: $${totalValue.toFixed(2)}\nExcelente trabalho na auditoria.`);
+            if (lotesProduzidos >= 15 && money > 5000) {
+                alert(`🏆 DESEMPENHO EXCEPCIONAL!\n\nVocê bateu as metas do trimestre da Água Sanitária Dragão!\nLotes entregues: ${lotesProduzidos}\nFaturamento final: R$ ${money.toFixed(2)}\nO gerente de operações mandou te dar os parabéns!`);
             } else {
-                alert(`[ALERTA DE DESEMPENHO]\n\nFim do trimestre.\nValor Consolidado: $${totalValue.toFixed(2)}\nMeta de $100.000,00 não atingida. Tente reajustar seus ativos.`);
+                alert(`⚠️ BALANÇO TRIMESTRAL CONCLUÍDO\n\nMetas não batidas.\nLotes entregues: ${lotesProduzidos} (Meta: 15)\nCaixa final: R$ ${money.toFixed(2)}`);
             }
             // Reset
-            cash = 10000;
-            turn = 1;
-            products.forEach(p => { p.qty = 0; p.currentPrice = p.basePrice; });
+            cloro = 12.0; agua = 88.0; ph = 12.0;
+            money = 1500; turn = 1; lotesProduzidos = 0; inventoryBatch = null;
             updateUI();
         }
 
-        function updateFormula(cell, prodName) {
-            document.getElementById('cell-focus').innerText = cell;
-            document.getElementById('formula-text').innerText = `=VLOOKUP("${prodName}", DATA_RANGE, 3, FALSE) * GLOBAL_INDEX`;
-        }
-
-        // BOSS KEY / PANIC MODE
+        // TECLA DE PÂNICO (ESC)
         let isPanicked = false;
         function togglePanic() {
             const panicScreen = document.getElementById('panic-screen');
@@ -399,7 +471,7 @@
             }
         });
 
-        // Init
+        // Inicializar painel
         updateUI();
     </script>
 </body>
