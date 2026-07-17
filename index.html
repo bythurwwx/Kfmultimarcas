@@ -2,477 +2,173 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Controle de Processos - Água Sanitária Dragão v4.2</title>
+    <title>Console de Monitoramento - BD_PROD_2026</title>
     <style>
         body {
-            margin: 0;
-            font-family: "Segoe UI", -apple-system, sans-serif;
-            background-color: #1e1e24;
-            color: #e0e0e0;
-            font-size: 11px;
-            user-select: none;
-            overflow: hidden;
-        }
-
-        /* Top Bar - Corporativa e Industrial */
-        .industrial-header {
-            background-color: #0d233a; /* Azul escuro corporativo */
-            color: #ffffff;
-            padding: 8px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #d9381e; /* Vermelho Dragão */
-            font-weight: bold;
-            font-size: 12px;
-        }
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .dragon-badge {
-            background-color: #d9381e;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            letter-spacing: 1px;
-        }
-
-        /* Sub-Header de Status do Sistema */
-        .system-status-bar {
-            background-color: #2d3748;
-            padding: 6px 16px;
-            display: flex;
-            gap: 20px;
-            font-family: monospace;
-            border-bottom: 1px solid #4a5568;
-            color: #a0aec0;
-        }
-
-        /* Dashboard Layout */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto 1fr;
-            gap: 12px;
-            padding: 12px;
-            box-sizing: border-box;
-            height: calc(100vh - 75px);
-        }
-
-        /* Card Industrial */
-        .panel-card {
-            background-color: #2d3238;
-            border: 1px solid #444c56;
-            border-radius: 4px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-title {
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #3182ce;
-            border-bottom: 1px solid #444c56;
-            padding-bottom: 6px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Elementos de Controle do Jogo */
-        .gauge-container {
-            display: flex;
-            justify-content: space-around;
-            margin: 10px 0;
-        }
-        .gauge-box {
-            text-align: center;
-            background: #22252a;
-            padding: 8px;
-            border-radius: 4px;
-            width: 30%;
-            border: 1px solid #3e444d;
-        }
-        .gauge-value {
-            font-family: monospace;
-            font-size: 18px;
-            font-weight: bold;
-            color: #48bb78;
-            margin-top: 4px;
-        }
-
-        /* Grid de Produção */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: monospace;
-        }
-        th, td {
-            text-align: left;
-            padding: 6px;
-            border-bottom: 1px solid #3e444d;
-        }
-        th {
-            color: #a0aec0;
-            font-size: 10px;
-            text-transform: uppercase;
-        }
-
-        /* Botões Disfarçados (Parecem botões de CLICAR do sistema ERP) */
-        .btn-system {
-            background-color: #3182ce;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            font-family: inherit;
-            font-size: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 2px;
-            text-transform: uppercase;
-        }
-        .btn-system:hover {
-            background-color: #2b6cb0;
-        }
-        .btn-danger {
-            background-color: #e53e3e;
-        }
-        .btn-danger:hover {
-            background-color: #c53030;
-        }
-
-        /* Panic Screen (Excel chato de Cloro) */
-        #panic-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #ffffff;
-            color: #333333;
-            z-index: 9999;
+            background-color: #0c0f12;
+            color: #a9b2c3;
+            font-family: 'Courier New', Courier, monospace;
             padding: 20px;
-            box-sizing: border-box;
-            font-family: Calibri, Arial, sans-serif;
+            margin: 0;
+            font-size: 13px;
         }
-        .excel-table {
-            border-collapse: collapse;
-            width: 100%;
+        .header {
+            border-bottom: 1px dashed #343d46;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #4f5b66;
         }
-        .excel-table th, .excel-table td {
-            border: 1px solid #d2d0ce;
-            padding: 4px 8px;
-            font-size: 11px;
-            text-align: left;
+        .container {
+            max-width: 600px;
         }
-        .excel-table th { background-color: #f3f2f1; font-weight: normal; }
+        .log-row {
+            margin-bottom: 8px;
+            display: flex;
+            gap: 5px;
+        }
+        .char-box {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #343d46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: #161b22;
+        }
+        /* Cores disfarçadas de sucesso/erro do sistema */
+        .correct {
+            background-color: #1b4721 !important; /* Verde escuro (Sucesso) */
+            color: #3ade5b;
+            border-color: #2ea043 !important;
+        }
+        .present {
+            background-color: #4d3800 !important; /* Amarelo/Laranja escuro (Aviso) */
+            color: #ffc107;
+            border-color: #ca9b00 !important;
+        }
+        .absent {
+            background-color: #21262d !important; /* Cinza escuro (Ignorado) */
+            color: #8b949e;
+        }
+        input {
+            background: #161b22;
+            border: 1px solid #343d46;
+            color: #58a6ff;
+            padding: 8px;
+            font-family: inherit;
+            width: 180px;
+            margin-top: 15px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #58a6ff;
+        }
+        .status-msg {
+            color: #8b949e;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .btn-panic {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #21262d;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO INDUSTRIAL DRAGÃO -->
-    <div class="industrial-header">
-        <div class="header-logo">
-            <span class="dragon-badge">DRAGÃO</span>
-            <span>SADP - Sistema de Automação e Distribuição de Produção v4.27</span>
-        </div>
-        <div style="color: #cbd5e0; font-size: 10px;">ID do Terminal: BR-CAS-TX01 | Conectado via Intranet</div>
+    <div class="header">
+        SYS_LOG: v4.12.0-RELEASE // Sessão ativa: admin_usr // Host: 192.168.1.104 <br>
+        Status do Banco de Dados: <span style="color: #3ade5b;">ESTÁVEL</span> | Query Buffer: OK
     </div>
 
-    <!-- BARRA DE STATUS DO SISTEMA -->
-    <div class="system-status-bar">
-        <span>SISTEMA: <strong style="color: #48bb78;">ONLINE</strong></span>
-        <span>|</span>
-        <span>PLTA: CASCAVEL-CE</span>
-        <span>|</span>
-        <span>CONEXÃO COM TANQUES: ATIVA</span>
-        <span style="margin-left: auto; color: #f56565; cursor: pointer;" onclick="togglePanic()">🚨 REVISAR AUDITORIA (ESC)</span>
-    </div>
-
-    <!-- MAIN DASHBOARD -->
-    <div class="dashboard">
+    <div class="container">
+        <p style="color: #8b949e;">[SISTEMA] Insira a chave de criptografia de 5 letras para validar o lote:</p>
         
-        <!-- CARD 1: REATORES DE MISTURA (Controle de Níveis) -->
-        <div class="panel-card">
-            <div class="card-title">
-                <span>Controle de Reatores - Dosagem Química</span>
-                <span style="color: #a0aec0;">Sensor de Vazão: OK</span>
-            </div>
-            <p style="margin: 0 0 10px 0; color: #a0aec0;">Equilibre a dosagem para produzir água sanitária padrão (pH entre 11.5 e 12.5).</p>
-            
-            <div class="gauge-container">
-                <div class="gauge-box">
-                    <div style="font-size: 10px; color: #cbd5e0;">Hipoclorito de Sódio</div>
-                    <div class="gauge-value" id="cloro-val">12.0%</div>
-                </div>
-                <div class="gauge-box">
-                    <div style="font-size: 10px; color: #cbd5e0;">Água Deionizada</div>
-                    <div class="gauge-value" id="agua-val">88.0%</div>
-                </div>
-                <div class="gauge-box">
-                    <div style="font-size: 10px; color: #cbd5e0;">pH Medido</div>
-                    <div class="gauge-value" id="ph-val" style="color: #48bb78;">12.0</div>
-                </div>
-            </div>
+        <!-- Grid do Jogo (6 tentativas) -->
+        <div id="grid"></div>
 
-            <div style="display: flex; gap: 10px; margin-top: auto; justify-content: center;">
-                <button class="btn-system" onclick="adjustChemistry(0.2, -0.2)">+ Cloro / - Água</button>
-                <button class="btn-system" onclick="adjustChemistry(-0.2, 0.2)">- Cloro / + Água</button>
-                <button class="btn-system btn-danger" onclick="produceBatch()">Homogeneizar e Envasar Lote</button>
-            </div>
-        </div>
-
-        <!-- CARD 2: PAINEL DE METAS E VENDAS -->
-        <div class="panel-card">
-            <div class="card-title">
-                <span>Relatório Trimestral de Expedição</span>
-                <span style="color: #f6e05e;">Meta: Q3/2026</span>
-            </div>
-            <table style="margin-top: 10px;">
-                <tr>
-                    <td>Lotes Produzidos (Padrão Dragão):</td>
-                    <td id="lotes-val" style="font-weight: bold; color: #3182ce;">0 / 15</td>
-                </tr>
-                <tr>
-                    <td>Faturamento Expedição (Vendas):</td>
-                    <td id="money-val" style="font-weight: bold; color: #48bb78;">R$ 1.500,00</td>
-                </tr>
-                <tr>
-                    <td>Custo Logístico por Turno:</td>
-                    <td style="color: #f56565;">R$ 150,00</td>
-                </tr>
-                <tr>
-                    <td>Turno de Operação:</td>
-                    <td id="turn-val" style="font-weight: bold;">1 / 20</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- CARD 3: LOGÍSTICA DE DISTRIBUIÇÃO (Mercado) -->
-        <div class="panel-card" style="grid-column: span 2;">
-            <div class="card-title">
-                <span>Demanda Regional - Distribuidores Nordeste</span>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Distribuidor / Região</th>
-                        <th>Demanda de pH Exigida</th>
-                        <th>Valor Oferecido (por Lote)</th>
-                        <th>Status da Negociação</th>
-                        <th>Ação de Embarque</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Supermercados Fortaleza</td>
-                        <td>pH 11.8 - 12.2 (Estrito)</td>
-                        <td style="color: #48bb78; font-weight: bold;">R$ 1.800,00</td>
-                        <td id="dem-0-status">Aguardando Lote</td>
-                        <td><button class="btn-system" onclick="shipBatch(0)">Despachar Caminhão</button></td>
-                    </tr>
-                    <tr>
-                        <td>Distribuidora Cariri</td>
-                        <td>pH 11.0 - 13.0 (Flexível)</td>
-                        <td style="color: #48bb78; font-weight: bold;">R$ 1.100,00</td>
-                        <td id="dem-1-status">Aguardando Lote</td>
-                        <td><button class="btn-system" onclick="shipBatch(1)">Despachar Caminhão</button></td>
-                    </tr>
-                    <tr>
-                        <td>Atacadão Sobral</td>
-                        <td>pH 12.2 - 12.6 (Forte)</td>
-                        <td style="color: #48bb78; font-weight: bold;">R$ 1.500,00</td>
-                        <td id="dem-2-status">Aguardando Lote</td>
-                        <td><button class="btn-system" onclick="shipBatch(2)">Despachar Caminhão</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+        <input type="text" id="guessInput" maxlength="5" placeholder="DIGITE AQUI..." autocomplete="off">
+        <div class="status-msg" id="message">> Aguardando comando de validação...</div>
     </div>
 
-    <!-- TELA DE PÂNICO (EXCEL DE CLORO INTEGRALMENTE CHATO E BRANCO) -->
-    <div id="panic-screen">
-        <div style="font-size: 14px; font-weight: bold; color: #107c41; margin-bottom: 10px;">📊 Relatório_Inspeção_Vazao_Cloro_Q3.xlsx - Microsoft Excel</div>
-        <table class="excel-table">
-            <thead>
-                <tr>
-                    <th>ID_LOTE</th>
-                    <th>DATA_COLETA</th>
-                    <th>CONCENTRAÇÃO_CLORO_ATIVO (%)</th>
-                    <th>PH_MEDIDO</th>
-                    <th>STATUS_COMPLIANCE</th>
-                    <th>AUDITOR_RESPONSAVEL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>LT-2026-098</td>
-                    <td>16/07/2026</td>
-                    <td>2.25%</td>
-                    <td>12.04</td>
-                    <td style="color:#107c41; font-weight: bold;">APROVADO</td>
-                    <td>Eng. Químico Reg. 4452</td>
-                </tr>
-                <tr>
-                    <td>LT-2026-099</td>
-                    <td>16/07/2026</td>
-                    <td>2.10%</td>
-                    <td>11.95</td>
-                    <td style="color:#107c41; font-weight: bold;">APROVADO</td>
-                    <td>Eng. Químico Reg. 4452</td>
-                </tr>
-                <tr>
-                    <td>LT-2026-100</td>
-                    <td>16/07/2026</td>
-                    <td>1.80%</td>
-                    <td>10.80</td>
-                    <td style="color:#a80000; font-weight: bold;">REJEITADO - REPROCESSAR</td>
-                    <td>Eng. Químico Reg. 4452</td>
-                </tr>
-            </tbody>
-        </table>
-        <div style="margin-top: 15px; font-size: 11px; color: #666;">
-            <strong>Nota de Auditoria:</strong> Os dados de pureza microbiológica estão em conformidade com as diretrizes da ANVISA para águas sanitárias industriais. Pressione <strong>ESC</strong> para recalcular as células do modelo de previsão macroeconômica.
-        </div>
-    </div>
+    <!-- Botão invisível de pânico que te joga pro Google se você clicar correndo -->
+    <button class="btn-panic" onclick="window.location.href='https://www.google.com'">.</button>
 
     <script>
-        // LÓGICA DO JOGO
-        let cloro = 12.0;
-        let agua = 88.0;
-        let ph = 12.0;
+        // Lista de palavras secretas possíveis (todas com 5 letras)
+        const words = ["TEMPO", "TERMO", "LOGAR", "DADOS", "CHAVE", "PASTA", "GRUPO", "CAMPO", "INDEX", "FOLHA"];
+        const targetWord = words[Math.floor(Math.random() * words.length)];
         
-        let inventoryBatch = null; // Guarda o pH do lote produzido
-        let money = 1500;
-        let turn = 1;
-        const maxTurns = 20;
-        let lotesProduzidos = 0;
+        let attempts = 0;
+        const maxAttempts = 6;
+        const grid = document.getElementById("grid");
+        const input = document.getElementById("guessInput");
+        const message = document.getElementById("message");
 
-        function updateUI() {
-            document.getElementById('cloro-val').innerText = cloro.toFixed(1) + "%";
-            document.getElementById('agua-val').innerText = agua.toFixed(1) + "%";
-            document.getElementById('ph-val').innerText = ph.toFixed(2);
-            document.getElementById('money-val').innerText = "R$ " + money.toFixed(2);
-            document.getElementById('turn-val').innerText = turn + " / " + maxTurns;
-            document.getElementById('lotes-val').innerText = lotesProduzidos + " / 15";
-
-            const phCell = document.getElementById('ph-val');
-            if (ph >= 11.5 && ph <= 12.5) {
-                phCell.style.color = "#48bb78"; // Verde (Mistura ideal para a Dragão)
-            } else {
-                phCell.style.color = "#e53e3e"; // Vermelho (Fora do padrão)
+        // Cria a grade vazia que parece uma tabela de sistema
+        for (let i = 0; i < maxAttempts; i++) {
+            const row = document.createElement("div");
+            row.className = "log-row";
+            for (let j = 0; j < 5; j++) {
+                const box = document.createElement("div");
+                box.className = "char-box";
+                box.id = `box-${i}-${j}`;
+                box.innerText = "-";
+                row.appendChild(box);
             }
+            grid.appendChild(row);
         }
 
-        function adjustChemistry(cloroDiff, aguaDiff) {
-            cloro = Math.max(5, Math.min(25, cloro + cloroDiff));
-            agua = Math.max(75, Math.min(95, agua + aguaDiff));
-            
-            // Fórmula do pH simulada
-            ph = 7 + (cloro * 0.41) + (Math.random() * 0.1 - 0.05);
-            updateUI();
-        }
-
-        function produceBatch() {
-            inventoryBatch = ph;
-            alert(`[PRODUÇÃO] Lote de Água Sanitária Dragão envasado com sucesso!\nPH do Lote: ${ph.toFixed(2)}\n\nAgora despache o lote para um dos distribuidores abaixo para receber a verba!`);
-            
-            document.getElementById('dem-0-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
-            document.getElementById('dem-1-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
-            document.getElementById('dem-2-status').innerText = `Lote pronto (pH ${ph.toFixed(1)})`;
-        }
-
-        function shipBatch(distributorIndex) {
-            if (inventoryBatch === null) {
-                alert("[ERRO] Nenhum lote envasado na esteira! Misture e produza um lote antes de despachar.");
-                return;
-            }
-
-            let valid = false;
-            let pay = 0;
-
-            if (distributorIndex === 0) { // Fortaleza
-                if (inventoryBatch >= 11.8 && inventoryBatch <= 12.2) {
-                    valid = true; pay = 1800;
+        input.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                const guess = input.value.toUpperCase();
+                if (guess.length !== 5) {
+                    message.innerText = "> ERRO: A chave deve conter exatamente 5 caracteres.";
+                    return;
                 }
-            } else if (distributorIndex === 1) { // Cariri
-                if (inventoryBatch >= 11.0 && inventoryBatch <= 13.0) {
-                    valid = true; pay = 1100;
-                }
-            } else if (distributorIndex === 2) { // Sobral
-                if (inventoryBatch >= 12.2 && inventoryBatch <= 12.6) {
-                    valid = true; pay = 1500;
-                }
-            }
-
-            if (valid) {
-                money += pay;
-                lotesProduzidos++;
-                alert(`[LOGÍSTICA] Entrega realizada com sucesso!\nO distribuidor aprovou a Água Sanitária Dragão.\nVocê faturou R$ ${pay.toFixed(2)}.`);
-            } else {
-                money -= 300; // Multa por devolução de lote com pH incorreto
-                alert(`[REJEITADO] O controle de qualidade do comprador barrou o lote!\nO pH de ${inventoryBatch.toFixed(2)} não atendeu aos parâmetros exigidos.\nMulta de transporte e logística aplicada: - R$ 300,00`);
-            }
-
-            inventoryBatch = null; // Reseta lote
-            document.getElementById('dem-0-status').innerText = "Aguardando Lote";
-            document.getElementById('dem-1-status').innerText = "Aguardando Lote";
-            document.getElementById('dem-2-status').innerText = "Aguardando Lote";
-
-            nextTurn();
-        }
-
-        function nextTurn() {
-            if (turn >= maxTurns) {
-                endGame();
-                return;
-            }
-            turn++;
-            money -= 150; // Custo fixo de operação por turno
-            updateUI();
-        }
-
-        function endGame() {
-            if (lotesProduzidos >= 15 && money > 5000) {
-                alert(`🏆 DESEMPENHO EXCEPCIONAL!\n\nVocê bateu as metas do trimestre da Água Sanitária Dragão!\nLotes entregues: ${lotesProduzidos}\nFaturamento final: R$ ${money.toFixed(2)}\nO gerente de operações mandou te dar os parabéns!`);
-            } else {
-                alert(`⚠️ BALANÇO TRIMESTRAL CONCLUÍDO\n\nMetas não batidas.\nLotes entregues: ${lotesProduzidos} (Meta: 15)\nCaixa final: R$ ${money.toFixed(2)}`);
-            }
-            // Reset
-            cloro = 12.0; agua = 88.0; ph = 12.0;
-            money = 1500; turn = 1; lotesProduzidos = 0; inventoryBatch = null;
-            updateUI();
-        }
-
-        // TECLA DE PÂNICO (ESC)
-        let isPanicked = false;
-        function togglePanic() {
-            const panicScreen = document.getElementById('panic-screen');
-            if (!isPanicked) {
-                panicScreen.style.display = 'block';
-                isPanicked = true;
-            } else {
-                panicScreen.style.display = 'none';
-                isPanicked = false;
-            }
-        }
-
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                togglePanic();
+                
+                processGuess(guess);
+                input.value = "";
             }
         });
 
-        // Inicializar painel
-        updateUI();
+        function processGuess(guess) {
+            let correctCount = 0;
+            
+            for (let i = 0; i < 5; i++) {
+                const box = document.getElementById(`box-${attempts}-${i}`);
+                const char = guess[i];
+                box.innerText = char;
+
+                if (targetWord[i] === char) {
+                    box.classList.add("correct");
+                    correctCount++;
+                } else if (targetWord.includes(char)) {
+                    box.classList.add("present");
+                } else {
+                    box.classList.add("absent");
+                }
+            }
+
+            attempts++;
+
+            if (correctCount === 5) {
+                message.innerHTML = `> <span style="color:#3ade5b;">SUCESSO: Chave decodificada! Lote processado.</span>`;
+                input.disabled = true;
+            } else if (attempts >= maxAttempts) {
+                message.innerHTML = `> <span style="color:#f97583;">FALHA: Acesso bloqueado. A chave era ${targetWord}.</span>`;
+                input.disabled = true;
+            } else {
+                message.innerText = `> Tentativa ${attempts}/6 enviada ao servidor...`;
+            }
+        }
     </script>
 </body>
 </html>
